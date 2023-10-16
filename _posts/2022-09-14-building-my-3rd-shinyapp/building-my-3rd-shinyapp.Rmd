@@ -1,0 +1,42 @@
+---
+title: "Building my 3rd ShinyApp"
+description: |
+  This was my third experience building a ShinyApp.
+categories:
+  - ShinyApp 
+  - databases
+author:
+  - name: Yuri Souza
+date: 2023-08-20
+preview: reseed.gif
+output:
+  distill::distill_article:
+    self_contained: false
+
+---
+
+Sharing data is a good practice for different professionals from a varying range of subjects. In the Ecology field, the data used defines and drives many questions underlying the mechanisms observed in nature. One way to achieve this goal is through collaboration and sharing information collected in literature reviews, field campaigns, and biological modeling. However, acquiring data is only sometimes pleasant and intuitive. Most of the time, it demands a degree of knowledge for storing since those data are often shared through scientific journal platforms. 
+In this sense, I created an application called [*ReSeed*](https://souzayuri.shinyapps.io/reseedproject/) to display and share data from an Ecological thematic project. This app was part of a [*technician fellowship*](https://bv.fapesp.br/en/bolsas/197712/curatorship-processing-and-synthesis-of-seed-dispersal-traits-of-plants-and-animals-from-literature-/) I received to work with Dr. [*Marina Cortês*](https://marinaccortes.wixsite.com/marina) and her research group. 
+
+This app was also my final project for an MBA in Data Science and Analytics course I took from 2021-2023, which taught me some useful skills that I used to develop and sharpen the app. This application can be handy in exploring data patterns, and finding lacks in the dataset, being an easy tool for anyone who intends to use it. The platform is also friendly, and due to the fact it is interactive, this can be used for educational purposes as well.
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+<iframe src="https://souzayuri.shinyapps.io/reseedproject/"
+        style="border: 2px solid black; width: 170%; height: 500px;"></iframe>
+
+
+<!-- adding share buttons on the right side of the page -->
+<!-- AddToAny BEGIN -->
+<div class="a2a_kit a2a_kit_size_32 a2a_floating_style a2a_vertical_style" style="right:0px; top:150px; data-a2a-url="https://souzayuri.github.io/" data-a2a-title="Yuri Souza">
+<a class="a2a_button_twitter"></a>
+</div>
+<script>
+var a2a_config = a2a_config || {};
+a2a_config.onclick = 1;
+</script>
+<script async src="https://static.addtoany.com/menu/page.js"></script>
+<!-- AddToAny END -->

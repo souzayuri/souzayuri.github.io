@@ -1,0 +1,58 @@
+---
+title: "Animal species records history in the Atlantic Forest"
+description: |
+  This was my final project for the course "Introduction to Infographics and Data Visualization".
+categories:
+  - Visualization
+author:
+  - name: Yuri Souza
+date: 2023-09-06
+preview: atlantic_forest_infographic_project.gif
+output:
+  distill::distill_article:
+    self_contained: false
+
+---
+## **Background**
+
+I created this project as the final assignment for the *Introduction to Infographics and Data Visualization* course I took at the [University of Miami (JMM622-O)](https://bulletin.miami.edu/courses-az/jmm/)
+
+For this project, I focused on the Atlantic Forest and analyzed the correlation between the number of peer-reviewed papers and the number of species. To collect the necessary data, I used the [ATLANTIC: Data Papers from a biodiversity hotspot](https://esajournals.onlinelibrary.wiley.com/doi/toc/10.1002/(ISSN)1939-9170.AtlanticPapers) section of the Ecology scientific journal, which includes all available data on specific species. To ensure the reliability and accuracy of the data, I only used the published data.
+
+I attempted to create a visual representation of the loss of forest cover in the Brazilian state using a bubble chart, with the canopy as the main theme. Below the chart, I added a heat map to show the number of published papers per year, starting from the first published paper. Although my choice of chart was primarily based on design aesthetics, I wanted to convey the message effectively. I wanted to visually represent the growth of publications over time using a tree trunk. I noticed that there was a pattern of an increasing number of publications in recent years, and so I used the color brown to represent years with fewer publications. This allowed me to create a gradient transition from the top to the bottom of the tree trunk using the same hue.
+
+I used the Sankey diagram chart to split the published papers into groups based on the number of publications per animal group and the number of recorded species per year. My aim was to demonstrate that the diversity of organisms is the foundation of the tropical forest. Using the Sankey diagram, I wanted to highlight that some species have been studied more than others and that there is a correlation between the number of studies and the number of species recorded by year. Essentially, the more research we undertake, the more species we discover. For small animal groups, it appears that we have not yet reached the expected number of species. I used linear charts to depict the number of published papers and recorded species over time, linking them to their respective Sankey curves.
+
+## **Motivation**
+
+I chose this topic because I have noticed that some species get more attention than others. From the outset, I aimed to create a stylish infographic that would depict my data as a tree. The reason was to get more attention to the topic beyond the use of charts and graphics. In the past, we used to analyze the impact of human activity on forests through linear or bar charts. However, these charts didn't provide a complete picture of the complex relationships between different factors. As a result, we may have become too accustomed to these charts and stopped paying attention to the details. To address this issue, I created an infographic that incorporates various types of charts to create a more engaging and informative presentation. The goal was to create something that people would find visually appealing while also providing valuable insights into the impact of human activity on forests. After analyzing the Sankey chart along with the linear charts, I believe that charts showing absolute information might obscure vital information that temporal charts can capture. By examining these charts, we can identify what ecologists refer to as "Cute species," which are species that have an emotional impact on humans, such as primate species that are more closely related to human origin.
+
+##
+
+<embed src="20230430_yuri_souza_assingment_project2_final.pdf" type="application/pdf" width="100%" height="600px" />
+
+##
+
+The following file contains the step-by-step processes I utilized to create the definitive infographic. The infographic was based on my knowledge of the topic, as well as weekly feedback from my professor. This file also contains the pipeline I employed to manipulate, clean, and process the data utilizing R Markdown.
+
+##
+
+<embed src="20230430_yuri_souza_assingment_project_2_article.pdf" type="application/pdf" width="100%" height="600px" />
+
+##
+
+You can check the infographic and scripts used to create it as well as the files by accessing it through my [GitHub repository](https://github.com/souzayuri/infographics_P2)
+
+
+
+<!-- adding share buttons on the right side of the page -->
+<!-- AddToAny BEGIN -->
+<div class="a2a_kit a2a_kit_size_32 a2a_floating_style a2a_vertical_style" style="right:0px; top:150px; data-a2a-url="https://souzayuri.github.io/" data-a2a-title="Yuri Souza">
+<a class="a2a_button_twitter"></a>
+</div>
+<script>
+var a2a_config = a2a_config || {};
+a2a_config.onclick = 1;
+</script>
+<script async src="https://static.addtoany.com/menu/page.js"></script>
+<!-- AddToAny END -->

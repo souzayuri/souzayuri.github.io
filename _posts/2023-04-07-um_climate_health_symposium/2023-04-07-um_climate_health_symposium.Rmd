@@ -1,0 +1,41 @@
+---
+title: "Termites’ role as promoters of soil nutrient composition and gas flux in the Brazilian Savanna"
+description: |
+  This poster was presented on the 6th Climate and Health symposium
+categories:
+  - Poster Presentation
+#  - 2022
+date: 04-07-2023
+preview: conceptual_model.svg
+output:
+  distill::distill_article:
+    self_contained: true
+
+---
+**Authors:** *Yuri Souza & Amy Zanne*
+
+This poster represent the fist part of my project that I aim to carry out during the summer break. I presented these ideas on the 6th Climate and Health symposium of the University of Miami in 2023. I also created a Storytelling using ArcGIS that you can interact with the maps and get some more details about our research, you can access it by clicking [here](https://arcg.is/ezvSe)
+
+## **Abstract**
+
+Termites are considered important ecosystem engineers and drivers of patterns and processes observed in savannas and tropical forests worldwide. Even recognizing their importance for ecosystem functioning and balance, we lack fundamental information (such as the species composition) about these invertebrates in the Brazilian Savanna, which constrains us in advance of robust and proper measurements of their importance in such an important and unique ecosystem. Therefore, we aim to survey and sample termites in the Chapada dos Veadeiros National Park (CVNP), a heterogeneous savanna comprising different guilds of termites and their structures, such as mounds and earthmounds. This park has areas ranging from flatted grasslands and forests to high mountain rocks, in which the seasonality and the shallow soil might turn the landscape into a mix of wet and dry ecosystems. The first part of my project will focus on identifying termites' species composition, abundance, and distribution across this gradient of different areas of CVNP. In the second part, we propose to enlighten the underlying processes of termites' role in soil biogeochemistry patterns using the environmental and local scale gradients, from nest-mounds and earthmounds to surrounding fields. For the first part, we will collect termites using survey protocols, such as linear transect and baits. The second part compares termites' activity as drivers of soil nutrient composition, organic matter, moisture, soil structure, and carbon dioxide and methane gas flux. We hypothesize that the soil dynamic will vary according to termite composition over the CVNP. Thus, places with more termite activity would have richer nutrient soils and more atmospheric gas flux. 
+
+
+Unfortunately, our poster size is too large, so can not load it in a high resolution on this post. Please click [here](https://github.com/souzayuri/betterposter_UM_Climate_and_Health__symp_2023/blob/main/betterposter_UM_Climate_and_Health__symp_2023.pdf) to access it from my GitHub and check more details of our research.
+
+<embed src="Yuri_Souza_UMCH-resized.pdf" type="application/pdf" width="100%" height="600px" />
+
+<!--<embed src="Yuri_Souza_PSI_poster_resized.pdf#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf" width="100%" height="600px" />
+
+<!-- adding share buttons on the right side of the page -->
+<!-- AddToAny BEGIN -->
+
+<div class="a2a_kit a2a_kit_size_32 a2a_floating_style a2a_vertical_style" style="right:0px; top:150px; data-a2a-url="https://souzayuri.github.io/" data-a2a-title="Yuri Souza">
+<a class="a2a_button_twitter"></a>
+</div>
+<script>
+var a2a_config = a2a_config || {};
+a2a_config.onclick = 1;
+</script>
+<script async src="https://static.addtoany.com/menu/page.js"></script>
+<!-- AddToAny END -->

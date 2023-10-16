@@ -1,0 +1,59 @@
+name: "yuri_souza"
+title: "Yuri Souza, Ph.D. student"
+theme: assets/theme.css 
+description: |
+  Yuri Souza
+output_dir: "docs"
+navbar:
+  #logo:
+  #  image: YuriSSouza.jpg
+  right:
+    - icon: fab fa-researchgate fa-2x
+      href: https://www.researchgate.net/profile/Yuri-Souza-6
+    - icon: fa fa-graduation-cap fa-2x
+      href: https://scholar.google.com/citations?user=s1YL0toAAAAJ
+    - icon: fa-github fa-lg fa-2x
+      href: https://github.com/souzayuri
+    - icon: fa fa-twitter fa-lg fa-2x
+      href: https://twitter.com/Yuri_S_Souza
+#    - icon: fa fa-brands fa-instagram fa-2x
+#      href: https://www.instagram.com/ssouzayuri/
+    - icon: fa-duotone fa-envelope fa-2x
+      href: "mailto:yuri.souza@miami.edu"
+  left:
+    - text: ""
+      href: index.html
+    - text: "About"
+      href: about.html
+    - text: "Research"
+      href: research.html
+    - text: "Blog" 
+      href: blog.html
+    - text: "Publications"
+      href: publications.html
+    - text: "Gallery"
+      href: gallery.html
+    - text: "Contact"
+      href: contact.html
+    - text: "CV"
+      href: cv.html
+base_url: https://souzayuri.github.io/
+collections:
+  posts:
+    creative_commons: CC BY
+#    disqus: yuri_souza
+    share: [twitter]
+    
+output:
+  distill::distill_article:
+    includes:
+      in_header: utterances.html
+                 
+twitter:
+  site: "@Yuri_S_Souza"
+  creator: "@Yuri_S_Souza"
+rss:
+  full_content: TRUE
+#  categories:
+#    - R
+#    - ShinyApp

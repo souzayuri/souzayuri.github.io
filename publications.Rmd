@@ -1,0 +1,28 @@
+---
+title: "Publications"
+listing:
+  posts:
+    - 2022-10-21-paper_tortoise_frugivory
+    - 2022-01-22-paper_growth_form
+    - 2021-01-14-book_defaunation
+    - 2019-06-10-paper_data_paper_mammals
+    - 2018-06-28-paper_data_paper_amphibians
+    - 2018-03-20-paper_pinnus_invasion
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+<!-- adding share buttons on the right side of the page -->
+<!-- AddToAny BEGIN -->
+<div class="a2a_kit a2a_kit_size_32 a2a_floating_style a2a_vertical_style" style="right:0px; top:150px; data-a2a-url="https://souzayuri.github.io/" data-a2a-title="Yuri Souza">
+<a class="a2a_button_twitter"></a>
+</div>
+<script>
+var a2a_config = a2a_config || {};
+a2a_config.onclick = 1;
+</script>
+<script async src="https://static.addtoany.com/menu/page.js"></script>
+<!-- AddToAny END -->

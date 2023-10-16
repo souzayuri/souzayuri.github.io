@@ -1,0 +1,63 @@
+---
+title: "Homeless in New York State"
+description: |
+  This was my second project for the course "Introduction to Infographics and Data Visualization".
+categories:
+  - Visualization
+author:
+  - name: Yuri Souza
+date: 2023-09-05
+preview: homelessness_infographic_project.gif
+output:
+  distill::distill_article:
+    self_contained: false
+
+---
+## **Background**
+
+I created this project as the first assignment for the *Introduction to Infographics and Data Visualization* course I took at the [University of Miami (JMM622-O)](https://bulletin.miami.edu/courses-az/jmm/)
+
+As part of this project, I decided to work with *homeless students in New York State*, since the main topic should be about homelessness. This is a versatile topic that can be explored in many ways. Additionally, it helped through the processes of using different charts to tell a story from a broad to a narrow perspective using Adobe Illustrator and infographic techniques. The data was obtained from [*National Center for Homeless Education portal*](https://nche.ed.gov/data-and-stats/) and the infographic is divided into four main sections.
+
+The *first section* features a line chart showing the total number of homeless students between 2009 and 2021. I chose a line chart because it makes it easier to track trends over time. Alongside the chart, I added a map of the number of homeless students per county in New York State. I chose to use counties to illustrate that this problem is widespread throughout the state.
+
+Given that New York has 62 counties and it would be hard to make a chart representing each of them
+well, in the *second section* I tried to show these changes using the New York economic region’s boundaries.
+I chose a line graph to display the data over time, as it shows the trends in the increased proportions of multiple areas simultaneously. In addition, by plotting both chart and map, I was able to avoid any overlapping lines within the chart and provide a clearer representation of the data. The map shows the proportionate increase in the number of homeless students in 2021 compared to 2009, per economic region. My aim in using both chart and map was to demonstrate that the rise in homeless students is not related to the size of the region, and that looking only at the percentage increase does not provide an accurate representation of the number of students affected in each region.
+
+In the *third section*, I use a line chart to show which schools these students attend and how disproportionate it is over time. I also included a bar chart showing the proportion changes in 2021 compared to 2009.
+
+In the *fourth and final section* of my project, I present the proportion of students per school grade over time using a bumpchart. I chose the bumpchart because it allows me to display the overlap between lines and trends more effectively than the line chart. Additionally, this section includes a bar chart comparing the year 2021 to 2009 for each grade. As I do not have data regarding students' age, I used grades as a proxy to estimate the age of individuals living in homeless conditions.
+
+## **Motivation**
+
+I chose this topic because young people are likely the social class most affected by homelessness, as they must make decisions that will impact their adult lives. Additionally, the United States has plenty of available data that allowed me to explore this topic from different angles. The infographic is based on The Economist magazine's style.
+
+##
+
+<embed src="20230402_yuri_souza_project1_final_version_JMM622-O.pdf" type="application/pdf" width="100%" height="600px" />
+
+##
+
+The following file contains the step-by-step processes I utilized to create the definitive infographic. This file also contains the pipeline I employed to manipulate, clean, and process the data utilizing R Markdown. 
+
+##
+
+<embed src="20230402_yuri_souza_project1_final_version_JMM622-O-article.pdf" type="application/pdf" width="100%" height="600px" />
+
+##
+
+You can check the infographic and scripts used to create it as well as the files by accessing it through my [GitHub repository](https://github.com/souzayuri/homeless_infographics_P1)
+        
+
+<!-- adding share buttons on the right side of the page -->
+<!-- AddToAny BEGIN -->
+<div class="a2a_kit a2a_kit_size_32 a2a_floating_style a2a_vertical_style" style="right:0px; top:150px; data-a2a-url="https://souzayuri.github.io/" data-a2a-title="Yuri Souza">
+<a class="a2a_button_twitter"></a>
+</div>
+<script>
+var a2a_config = a2a_config || {};
+a2a_config.onclick = 1;
+</script>
+<script async src="https://static.addtoany.com/menu/page.js"></script>
+<!-- AddToAny END -->
