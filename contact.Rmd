@@ -19,7 +19,6 @@ Coral Gables, FL 33146,
 if(!require(leaflet)) install.packages("leaflet")
 if(!require(tidyverse)) install.packages("tidyverse")
 
-
 icon.ion <- makeAwesomeIcon(icon = 'home', markerColor = "red", library='ion')
 
 leaflet(width = "100%", height = 500) %>% 
@@ -29,12 +28,12 @@ leaflet(width = "100%", height = 500) %>%
   addProviderTiles(providers$Esri.NatGeoWorldMap, group = "National Geographic World Map") %>%
   addProviderTiles(providers$OpenTopoMap, group = "Open Topo Map") %>%
   addProviderTiles(providers$Esri.WorldPhysical, group = "World Physical") %>%
-  addProviderTiles(providers$Stamen, group = "Stamen") %>%
+  #addProviderTiles(providers$Stamen, group = "Stamen") %>%
   addLayersControl(baseGroups = c("Open Street Map", "Esri World Imagery", 
                                   "National Geographic World Map", "Open Topo Map", 
-                                  "World Physical", "Stamen"), 
+                                  "World Physical"), 
                    options = layersControlOptions(collapsed = TRUE)) %>% 
-  addTiles(group = "Open Street Map") %>% 
+  addTiles(group = "National Geographic World Map") %>% 
   addMiniMap(zoomLevelOffset = -4, position = "bottomleft") %>%
   addAwesomeMarkers(lng=-80.2795266, lat=25.7221058, popup="The University of Miami", icon = icon.ion) %>% 
   addMarkers(lng=-47.5436089, lat=-22.3986622, popup="São Paulo State University") %>% 
