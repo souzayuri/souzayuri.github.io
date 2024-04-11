@@ -1,8 +1,8 @@
 name: "yuri_souza"
 title: "Yuri Souza, Ph.D. student"
-#favicon: data/images/icon.svg
+#favicon: icons/favicon.ico
 base_url: https://souzayuri.github.io/
-repository_url: https://souzayuri.github.io/
+repository_url: https://github.com/souzayuri/souzayuri.github.io 
 # cookie-consent: 
 #      type: express 
 #      style: headline
@@ -13,11 +13,10 @@ google_analytics:
 theme: assets/theme.css 
 description: |
   Yuri Souza
-favicon: images/favicon.ico
 output_dir: "docs"
 navbar:
-  logo:
-    image: images/android-chrome.png
+  # logo:
+  #    image: icons/android-chrome.png
   right:
     - icon: fab fa-researchgate fa-2x
       href: https://www.researchgate.net/profile/Yuri-Souza-6
