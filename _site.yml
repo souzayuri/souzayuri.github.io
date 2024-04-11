@@ -1,11 +1,21 @@
 name: "yuri_souza"
 title: "Yuri Souza, Ph.D. student"
+#favicon: data/images/icon.svg
+base_url: https://souzayuri.github.io/
+repository_url: https://souzayuri.github.io/
+# cookie-consent: 
+#      type: express 
+#      style: headline
+#      palette: dark
+google_analytics: 
+  tracking-id: "G-D581M67N46"
+  anonymize-ip: true
 theme: assets/theme.css 
 description: |
   Yuri Souza
 output_dir: "docs"
 navbar:
-  #logo:
+  logo:
   #  image: YuriSSouza.jpg
   right:
     - icon: fab fa-researchgate fa-2x
@@ -37,12 +47,11 @@ navbar:
       href: contact.html
     - text: "CV"
       href: cv.html
-base_url: https://souzayuri.github.io/
 collections:
   posts:
     creative_commons: CC BY
 #    disqus: yuri_souza
-    share: [twitter]
+    share: [twitter, facebook]
     
 output:
   distill::distill_article:
@@ -57,3 +66,4 @@ rss:
 #  categories:
 #    - R
 #    - ShinyApp
+#    

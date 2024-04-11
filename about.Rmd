@@ -40,3 +40,15 @@ After my master's I did an [*MBA in Data Science & Analytics*](https://moveurl.m
 
 I am currently pursuing a Ph.D. in *Biology* at the [University of Miami](https://news.miami.edu/grad/stories/2022/10/congratulations-to-our-2022-2023-fellows.html). Under the supervision of [Dr. Amy Zanne](https://amyzanne.org/) I seek to understand the mechanisms involving transversal and vertical energy interchange in the below and above-ground process. For this purpose, I expect to utilize termites as a model to understand their role as soil engineers by stimulating nutrient enrichment. I also aim to investigate how their predation by consumers might result in trophic cascades, thus affecting the decomposition rate of organic matter in greenhouse gas emissions such as CO² and methane.  
 
+
+<!-- adding share buttons on the right side of the page -->
+<!-- AddToAny BEGIN -->
+<div class="a2a_kit a2a_kit_size_32 a2a_floating_style a2a_vertical_style" style="right:0px; top:150px; data-a2a-url="https://souzayuri.github.io/" data-a2a-title="Yuri Souza">
+<a class="a2a_button_twitter"></a>
+</div>
+<script>
+var a2a_config = a2a_config || {};
+a2a_config.onclick = 1;
+</script>
+<script async src="https://static.addtoany.com/menu/page.js"></script>
+<!-- AddToAny END -->
