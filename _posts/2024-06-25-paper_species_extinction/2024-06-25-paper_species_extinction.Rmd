@@ -1,0 +1,37 @@
+---
+title: "A global map of species at risk of extinction due to natural hazards"
+description: |
+  This study explores the global overlap between species distributions and the occurrences of earthquakes, hurricanes, tsunamis, and volcanoes, to show that 10% of all 34,035 assessed terrestrial vertebrates are at risk due to at least one natural hazard, while 5.4% are at high risk. Species at high risk are mainly found in the tropics and on islands. Exposure to natural hazards can augment anthropogenic drivers, thereby compounding their impacts.
+categories:
+  - Papers 
+#  - 2022
+date: 06-25-2024
+preview: species_extinction.png
+output:
+  distill::distill_article:
+    self_contained: false
+
+---
+**Authors:** *Fernando Gonçalves, Harith Farooq, Mike Harfoot, Mathias M Pires, Nacho Villar, Lilian Sales, Carolina Carvalho, Carolina Bello, Carine Emer, Ricardo S Bovendorp, Calebe Mendes, Gabrielle Beca, Laís Lautenschlager*, ***Yuri Souza***, *Felipe Pedrosa, Claudia Paz, Valesca B Zipparro, Paula Akkawi, William Bercê, Fabiano Farah, André VL Freitas, Luís Fábio Silveira, Fábio Olmos, Jonas Geldmann, Bo Dalsgaard, Mauro Galetti*
+
+
+## **Abstract**
+
+An often-overlooked question of the biodiversity crisis is how natural hazards contribute to species extinction risk. To address this issue, we explored how four natural hazards, earthquakes, hurricanes, tsunamis, and volcanoes, overlapped with the distribution ranges of amphibians, birds, mammals, and reptiles that have either narrow distributions or populations with few mature individuals. To assess which species are at risk from these natural hazards, we combined the frequency and magnitude of each natural hazard to estimate their impact. We considered species at risk if they overlapped with regions where any of the four natural hazards historically occurred (n = 3,722). Those species with at least a quarter of their range subjected to a high relative impact were considered at high risk (n = 2,001) of extinction due to natural hazards. In total, 834 reptiles, 617 amphibians, 302 birds, and 248 mammals were at high risk and they were mainly distributed on islands and in the tropics. Hurricanes (n = 983) and earthquakes (n = 868) affected most species, while tsunamis (n = 272), and volcanoes (n = 171) affected considerably fewer. The region with the highest number of species at high risk was the Pacific Ring of Fire, especially due to volcanoes, earthquakes, and tsunamis, while hurricane-related high-risk species were concentrated in the Caribbean Sea, Gulf of Mexico, and northwestern Pacific Ocean. Our study provides important information regarding the species at risk due to natural hazards and can help guide conservation attention and efforts to safeguard their survival.
+
+Click on the link below for further information about this paper: [https://doi.org/10.1073/pnas.2321068121](https://doi.org/10.1073/pnas.2321068121)
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+<!-- adding share buttons on the right side of the page -->
+<!-- AddToAny BEGIN -->
+<div class="a2a_kit a2a_kit_size_32 a2a_floating_style a2a_vertical_style" style="right:0px; top:150px; data-a2a-url="https://souzayuri.github.io/" data-a2a-title="Yuri Souza">
+<a class="a2a_button_twitter"></a>
+</div>
+<script>
+var a2a_config = a2a_config || {};
+a2a_config.onclick = 1;
+</script>
+<script async src="https://static.addtoany.com/menu/page.js"></script>
+<!-- AddToAny END -->

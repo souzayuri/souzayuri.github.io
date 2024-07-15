@@ -1,0 +1,37 @@
+---
+title: "Communal tapir latrines are foraging sites for tropical forest vertebrates"
+description: |
+  Our study describes a novel foraging pattern performed by different species from a variety of habits, sizes, and groups using communal latrines as foraging sites. In the Atlantic Forest, lowland tapir latrines provide an important food resource for some omnivorous, insectivorous, and frugivorous animal species, which frequently visit and spend a substantial amount of time exploiting resources found on latrines.
+categories:
+  - Papers 
+#  - 2022
+date: 01-08-2024
+preview: tapir_latrines.png
+output:
+  distill::distill_article:
+    self_contained: false
+
+---
+**Authors:** *Laís Lautenschlager*, ***Yuri Souza***, *Nacho Villar, Mauro Galetti, Kenneth J Feeley*
+
+
+## **Abstract**
+
+Foraging is essential for animal survival, as it provides the nutritional resources to sustain metabolism and all activities that animals undertake. Communal latrines are sites where multiple individuals of the same species defecate and can have multiple functions. Latrine behavior has been recorded in many animal species, including lowland tapirs (Tapirus terrestris), which consume a wide variety of plants and fruits and defecate large piles of dung, sometimes containing many seeds. Due to the concentration of seeds and other defecated material, latrines may thus serve as direct sources of food for other vertebrates, including insectivores feeding on invertebrates attracted to dung. Here, we studied which vertebrate animals were recorded foraging in tapir latrines, how long they spent foraging on latrines, and how their foraging behavior varied with the time of day and days since tapir defecation. Since tapirs are generalist foragers with a large diet breadth, we expected that their feces might attract vertebrate foragers with a variety of dietary habits (e.g., frugivores, granivores, omnivores, insectivores) in distinct foraging periods within a day. We also expected that the foraging events would be greatest in the days immediately following tapir defecation. We monitored 27 tapir latrines with camera traps for six months, recording foraging vs. non-foraging behaviors. We observed nine vertebrate species foraging in tapir latrines with five frequent foragers: the frugivores Guerlinguetus brasiliensis (50% of total foraging records) and Tinamus solitarius (16%, also a granivore) and the omnivores Turdus albicollis (18%), Chamaeza campanisona (10%) and Odontophorus capueira (6%). Foraging and non-foraging events throughout the day differed significantly for G. brasiliensis (p= 0.006), T. solitarius (p= 0.01), and C. campanisona (p= 0.001), and all species were diurnal, foraging between 05:00h and 18:00h. The foraging probability of C. campanisona and T. albicollis was affected by the time lapse since tapir defecation. Our study highlights that communal latrines such as those maintained by lowland tapirs can be an important resource supply for some vertebrate consumers with different diets and could contribute to maintaining diversity in tropical forests. We call for future studies to inspect the importance of latrines as foraging sites for other species and ecosystems.
+
+Click on the link below for further information about this paper: [https://doi.org/10.1016/j.gecco.2024.e02950](https://doi.org/10.1016/j.gecco.2024.e02950)
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+<!-- adding share buttons on the right side of the page -->
+<!-- AddToAny BEGIN -->
+<div class="a2a_kit a2a_kit_size_32 a2a_floating_style a2a_vertical_style" style="right:0px; top:150px; data-a2a-url="https://souzayuri.github.io/" data-a2a-title="Yuri Souza">
+<a class="a2a_button_twitter"></a>
+</div>
+<script>
+var a2a_config = a2a_config || {};
+a2a_config.onclick = 1;
+</script>
+<script async src="https://static.addtoany.com/menu/page.js"></script>
+<!-- AddToAny END -->

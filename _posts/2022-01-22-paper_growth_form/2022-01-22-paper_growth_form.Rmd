@@ -12,7 +12,7 @@ output:
     self_contained: false
 
 ---
-**Authors:** ***Yuri Souza**, Nacho Villar, Valesca Zipparro, Sérgio Nazareth, Mauro Galetti*
+**Authors:** ***Yuri Souza***, *Nacho Villar, Valesca Zipparro, Sérgio Nazareth, Mauro Galetti*
 
 
 ## **Abstract**

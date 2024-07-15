@@ -2,6 +2,8 @@
 title: "Publications"
 listing:
   posts:
+    - 2024-06-25-paper_species_extinction
+    - 2024-01-08-paper_tapir_latrines
     - 2022-10-21-paper_tortoise_frugivory
     - 2022-01-22-paper_growth_form
     - 2021-01-14-book_defaunation

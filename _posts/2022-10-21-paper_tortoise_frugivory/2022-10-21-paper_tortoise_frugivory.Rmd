@@ -12,7 +12,7 @@ output:
     self_contained: true
 
 ---
-**authors:** *Lais Lautenschlager, Yuri Souza, Mauro Galetti*
+**Authors:** *Lais Lautenschlager*, ***Yuri Souza***, *Mauro Galetti*
 
 
 ## **Abstract**
