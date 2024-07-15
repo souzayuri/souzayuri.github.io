@@ -6,7 +6,7 @@ categories:
   - Papers 
 #  - 2022
 date: 01-08-2024
-preview: tapir_latrines.png
+preview: tapir_latrine.png
 output:
   distill::distill_article:
     self_contained: false
