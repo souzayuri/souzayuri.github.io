@@ -43,9 +43,3 @@ make_gallery_layout <- function() {
   }))
   
 }
-
-
-
-
-
-
