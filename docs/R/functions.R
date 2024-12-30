@@ -15,7 +15,7 @@ if (!require("tidytuesdayR")) pak::pak("dslc-io/tidytuesdayR")
 resize_image <- function(image) {
   
   imFile <- image_read(here::here(paste0("gallery/img/", image)))
-  imFile_resized <- magick::image_resize(imFile, "20%")
+  imFile_resized <- magick::image_resize(imFile, "10%")
   magick::image_write(imFile_resized, here::here(paste0("gallery/img/thumb-", image)))
   
 }
