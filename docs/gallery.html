@@ -32,7 +32,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -90,21 +90,21 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_meta_tags-->
   <title>Yuri Souza, Ph.D. student: Gallery</title>
 
-  <meta property="description" itemprop="description" content="Still working on it :("/>
+  <meta property="description" itemprop="description" content="Still working on it"/>
 
 
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="Yuri Souza, Ph.D. student: Gallery"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="Still working on it :("/>
+  <meta property="og:description" content="Still working on it"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Yuri Souza, Ph.D. student"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
   <meta property="twitter:title" content="Yuri Souza, Ph.D. student: Gallery"/>
-  <meta property="twitter:description" content="Still working on it :("/>
+  <meta property="twitter:description" content="Still working on it"/>
   <meta property="twitter:site" content="@Yuri_S_Souza"/>
   <meta property="twitter:creator" content="@Yuri_S_Souza"/>
 
@@ -112,7 +112,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Gallery"]},{"type":"character","attributes":{},"value":["Still working on it :(\n"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output","base_url"]}},"value":[{"type":"character","attributes":{},"value":["Gallery"]},{"type":"character","attributes":{},"value":["Still working on it\n"]},{"type":"character","attributes":{},"value":["distill::distill_article"]},{"type":"character","attributes":{},"value":["https://souzayuri.github.io/"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2698,7 +2698,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.26/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2779,7 +2779,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Gallery","description":"Still working on it :(","authors":[]}
+{"title":"Gallery","description":"Still working on it","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2827,7 +2827,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>Still working on it :(</p></p>
+<p><p>Still working on it</p></p>
 </div>
 
 
@@ -2835,6 +2835,65 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
+<head>
+<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.0/css/lightgallery.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.1-beta.0/js/lightgallery.min.js"></script>
+<!-- lightgallery plugins -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lg-fullscreen/1.2.1/lg-fullscreen.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lg-thumbnail/1.2.1/lg-thumbnail.min.js"></script>
+</head>
+<div class="layout-chunk" data-layout="l-body">
+<style type="text/css">
+#lightgallery > a > img:hover {
+   transform: scale(1.15, 1.15);
+   transition: 0.4s ease-in-out;
+   cursor: pointer;
+}
+</style>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="row" id="lightgallery">
+<a href="_gallery/img/2022-51-temperature-predictions.png">
+<img src="_gallery/img/thumb-2022-51-temperature-predictions.png"/>
+</a>
+<a href="_gallery/img/2022-47-uk-museums.png">
+<img src="_gallery/img/thumb-2022-47-uk-museums.png"/>
+</a>
+<a href="_gallery/img/2022-28-european-flights.png">
+<img src="_gallery/img/thumb-2022-28-european-flights.png"/>
+</a>
+<a href="_gallery/img/2022-09-alternative-fuel-stations.png">
+<img src="_gallery/img/thumb-2022-09-alternative-fuel-stations.png"/>
+</a>
+<a href="_gallery/img/2021-40-nber-papers.png">
+<img src="_gallery/img/thumb-2021-40-nber-papers.png"/>
+</a>
+<a href="_gallery/img/2021-27-animal-rescue.png">
+<img src="_gallery/img/thumb-2021-27-animal-rescue.png"/>
+</a>
+<a href="_gallery/img/2021-23-survivor-tv.png">
+<img src="_gallery/img/thumb-2021-23-survivor-tv.png"/>
+</a>
+<a href="_gallery/img/2021-17-netflix-titles.png">
+<img src="_gallery/img/thumb-2021-17-netflix-titles.png"/>
+</a>
+<a href="_gallery/img/2021-16-us-post-offices.png">
+<img src="_gallery/img/thumb-2021-16-us-post-offices.png"/>
+</a>
+<a href="_gallery/img/2021-15-deforestation.png">
+<img src="_gallery/img/thumb-2021-15-deforestation.png"/>
+</a>
+<a href="_gallery/img/2021-13-un-votes.png">
+<img src="_gallery/img/thumb-2021-13-un-votes.png"/>
+</a>
+<a href="_gallery/img/2021-12-steam-games.png">
+<img src="_gallery/img/thumb-2021-12-steam-games.png"/>
+</a>
+</div>
+</div>
+<script type="text/javascript">
+    lightGallery(document.getElementById('lightgallery'));
+</script>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
