@@ -28,7 +28,7 @@ jobs:
         shell: Rscript {0}
         
       - name: Copy redirects and gallery images
-        run: Rscript -e 'fs::file_copy("_redirects", "_site/_redirects"); fs::dir_copy("_gallery/img", "_site/_gallery/img")'
+        run: Rscript -e 'fs::dir_copy("_gallery/img", "docs/_gallery/img")'
       - name: Commit results
         run: |
           git add -A
