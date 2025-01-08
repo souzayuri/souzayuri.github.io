@@ -2,6 +2,7 @@
 title: "Posts gallery"
 listing:
   posts:
+    - 2025-01-05-random_forest_sup_classific_r
     - 2023-09-06-atlantic_forest_infographic_project
     - 2023-09-05-homelessness_infographic_project
     - 2022-09-14-building-my-3rd-shinyapp

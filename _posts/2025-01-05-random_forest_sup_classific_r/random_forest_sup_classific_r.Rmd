@@ -1,0 +1,172 @@
+---
+title: "Image Supervised Classification with Random Forest in R"
+description: |
+  Here I demonstrate how to load and visualize georeferenced spatial data along with a supervised random forest classification.
+  This is a work in progress and should be finished in the upcoming days.
+categories:
+  - Machine Learning 
+  - GIS
+author:
+  - name: Yuri Souza
+date: 2025-01-05
+preview: RF-example.PNG
+output:
+  distill::distill_article:
+    self_contained: false
+
+---
+
+I will divide the workflow of this tutorial into four main steps:
+
+1. Getting the data read
+2. Train Model
+3. Evaluate Model
+4. Classify Image
+
+The first thing we are gonna do is to load the required packages.
+We will use *raster* and *terra* to deal with raster data, *sf* for spatial vectors data, *tidyverse* for tabulate date and visualization, *caret* for random forest, and *mapview* for data viz.
+
+
+```{r packages, size = "small", include=TRUE}
+
+if (!require("tidyverse")) install.packages("tidyverse")
+if (!require("terra")) install.packages("terra")
+if (!require("raster")) install.packages("raster")
+if (!require("sf")) install.packages("sf")
+if (!require("sp")) install.packages("sp")
+if (!require("caret")) install.packages("caret")
+if (!require("mapview")) install.packages("mapview")
+if (!require("leaflet")) install.packages("leaflet")
+
+```
+
+Now, lets load our raster data and shapefile containing a few features delimited for use as training data in the random forest model.
+
+```{r loading and reading data, size = "small", include=TRUE}
+
+raw_raster <- terra::rast("woody_savanna.tif") |> 
+  terra::aggregate(fact=2) # original pixel size = 10.8cm, new pixel size 21.6cm (old * 2)
+raw_raster
+
+plot(raw_raster)
+
+sampled_area <- terra::vect("sampled_area.shp")
+sampled_area
+plot(sampled_area)
+
+
+train_features <- sf::st_read("train_features.shp")
+train_features
+
+train_features_clnd <- sf::st_read("train_features.shp") |> 
+  dplyr::rename(OBJECTID = "Classcode",
+                Class = "Classname") |> 
+  dplyr::mutate(OBJECTID = as.character(1:46),
+                Class = as.factor(Class),
+                Code = as.numeric(Class)) |> 
+  dplyr::select(c(1:3))
+
+train_features_clnd
+plot(train_features_clnd)
+
+
+# Compare CRS
+if (terra::crs(raw_raster) == terra::crs(train_features)) {
+  print("CRS are identical!")
+} else {
+  print("CRS are different. Therefore, reprojecting to match raster projection...")
+  # Reproject train_features to match raw_raster
+  train_features <- sf::st_transform(train_features, crs = terra::crs(raw_raster))
+}
+
+
+# Compare CRS
+if (terra::crs(raw_raster) == terra::crs(train_features)) {
+  print("CRS are identical!")
+} else {
+  print("CRS are different. Therefore, reprojecting to match raster projection...")
+  # Reproject train_features to match raw_raster
+  train_features <- sf::st_transform(train_features, crs = terra::crs(raw_raster))
+}
+
+
+
+```
+Now, lets crop the raster and check projection
+
+```{r cropping data, size = "small", include=TRUE}
+
+cropped_raster <- terra::crop(raw_raster, sampled_area)
+cropped_raster
+plot(cropped_raster)
+
+
+# Compare CRS
+if (terra::crs(raw_raster) == terra::crs(train_features)) {
+  print("CRS are identical!")
+} else {
+  print("CRS are different. Therefore, reprojecting to match raster projection...")
+  # Reproject train_features to match raw_raster
+  train_features <- terra::project(train_features, crs(raw_raster))
+}
+
+
+```
+Now, lets rename our band composition
+
+```{r defining band names, size = "small", include=TRUE}
+
+names(cropped_raster) <- c("Blue","Green","Red","RE","NIR","MASK")
+plot(cropped_raster)
+
+```
+Lets remove the MASK band as we will not use it
+
+```{r setup, selecting bands, size = "small", include=TRUE}
+cropped_raster_bands <- cropped_raster[[1:5]]
+plot(cropped_raster_bands)
+
+```
+Lets make a RGB band compostion and visualize it in an interactive map with viewmap
+
+```{r visualizing data, echo = TRUE, include=TRUE}
+
+train_class_colors <- unique(train_features_clnd$Class) |> 
+  as.data.frame() |>
+  dplyr::mutate(hex = c(grass = "#ff7f00",
+                        bare_soil = "#e41a1c",
+                        tree = "#55eed1"))
+train_class_colors
+
+mapview::viewRGB(brick(cropped_raster_bands[[1:3]]), 
+                 r = 3, g = 2, b = 1,
+                 map.types = c("Esri.WorldImagery", "OpenStreetMap", "OpenTopoMap"),
+                 maxpixels =  866760,
+                 layer.name = "RBG Image") + 
+  mapview::mapView(train_features_clnd, 
+                   zcol = "Class", 
+                   color = "black",  
+                   lwd = 2,
+                   col.regions = train_class_colors$hex,
+                   layer.name = "Features")
+
+
+```
+
+[Post Cover Image Credits](https://ecce.esri.ca/mac-blog/2019/06/03/random-forest-classification-with-r-and-collector-for-arcgis/)
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+<!-- adding share buttons on the right side of the page -->
+<!-- AddToAny BEGIN -->
+<div class="a2a_kit a2a_kit_size_32 a2a_floating_style a2a_vertical_style" style="right:0px; top:150px; data-a2a-url="https://souzayuri.github.io/" data-a2a-title="Yuri Souza">
+<a class="a2a_button_twitter"></a>
+</div>
+<script>
+var a2a_config = a2a_config || {};
+a2a_config.onclick = 1;
+</script>
+<script async src="https://static.addtoany.com/menu/page.js"></script>
+<!-- AddToAny END -->
