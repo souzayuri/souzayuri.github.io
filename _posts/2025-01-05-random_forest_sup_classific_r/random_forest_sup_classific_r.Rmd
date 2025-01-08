@@ -9,7 +9,7 @@ categories:
 author:
   - name: Yuri Souza
 date: 2025-01-05
-preview: RF-example.PNG
+preview: RF_example.png
 output:
   distill::distill_article:
     self_contained: false
@@ -22,6 +22,8 @@ I will divide the workflow of this tutorial into four main steps:
 2. Train Model
 3. Evaluate Model
 4. Classify Image
+
+The data used in this tutorial can be accessed [HERE](https://github.com/souzayuri/souzayuri.github.io/tree/main/_posts/2025-01-05-random_forest_sup_classific_r)
 
 The first thing we are gonna do is to load the required packages.
 We will use *raster* and *terra* to deal with raster data, *sf* for spatial vectors data, *tidyverse* for tabulate date and visualization, *caret* for random forest, and *mapview* for data viz.

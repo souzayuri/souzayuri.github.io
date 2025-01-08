@@ -3,6 +3,7 @@ if (!require("htmltools")) install.packages("htmltools")
 if (!require("gh")) install.packages("gh")
 if (!require("jsonlite")) install.packages("jsonlite")
 if (!require("magick")) install.packages("magick")
+if (!require("pak")) install.packages("pak")
 if (!require("tidytuesdayR")) pak::pak("dslc-io/tidytuesdayR")
 
 
@@ -36,10 +37,10 @@ make_gallery_layout <- function() {
   images[] <- lapply(images, rev)
   
   tagList(apply(images, 1, function(x) {
-      tags$a(
-        href = paste0("gallery/img/", x[["images_full_size"]]),
-        tags$img(src = paste0("gallery/img/", x[["images_thumb"]]))
-      )
+    tags$a(
+      href = paste0("gallery/img/", x[["images_full_size"]]),
+      tags$img(src = paste0("gallery/img/", x[["images_thumb"]]))
+    )
   }))
   
 }

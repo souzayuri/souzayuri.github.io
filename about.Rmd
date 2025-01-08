@@ -23,7 +23,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ### About me
 
-I am an ecologist and researcher inspired to understand the mechanisms underlying the functioning of our world. I have been exploring different research topics since the beginning of my career, ranging from modeling plants to fieldwork and mammal surveys. Most of my research has focused on understanding how populations, communities, and ecosystems respond to human disturbances from different perspectives. I am fascinated and motivated to comprehend Tropical ecosystem maintenance under disturbed scenarios such as those triggered by the Anthropocene epoch.
+I am a data-driven researcher with solid experience in data science, specializing in statistical analysis, machine learning modeling, and data visualization across different formats and platforms. My interdisciplinary background in ecology and data science enables me to navigate between natural sciences, spatial analysis, and machine learning, applying these skills to solve complex problems in various areas. My focus is to search for patterns and clearly communicate them, making results accessible and transferable to different audiences through effective storytelling graphs such as dashboards and infographics. I am passionate about continuous learning and keeping up to date with new technologies and methodologies. Most recently, I started learning and translating my knowledge in geographical information systems to the Google Earth Engine platform as a way to automate satellite image processing. My academic experience has granted me skills that allow me to learn quickly and to seek knowledge outside my comfort zone. I like to collaborate and brainstorm with people, and over the last years, I was able to lead projects and build strong professional connections, enhancing my work in multidisciplinary fields. Besides being a scientist for my profession and personal life, I have been a technology and computer geek since my childhood. My next goal is to dive more into artificial intelligence and machine learning techniques to integrate different approaches and techniques aiming to automate data processing. I seek to work on projects that challenge my skills and involve integrating data science with different fields of knowledge.
 
 
 ### Academic Background and Skills
@@ -38,7 +38,7 @@ After my master's I did an [*MBA in Data Science & Analytics*](https://moveurl.m
 
 ### Present
 
-I am currently pursuing a Ph.D. in *Biology* at the [University of Miami](https://news.miami.edu/grad/stories/2022/10/congratulations-to-our-2022-2023-fellows.html). Under the supervision of [Dr. Amy Zanne](https://amyzanne.org/) I seek to understand the mechanisms involving transversal and vertical energy interchange in the below and above-ground process. For this purpose, I expect to utilize termites as a model to understand their role as soil engineers by stimulating nutrient enrichment. I also aim to investigate how their predation by consumers might result in trophic cascades, thus affecting the decomposition rate of organic matter in greenhouse gas emissions such as CO² and methane.  
+I am currently pursuing a Masters in *Biology* at the [University of Miami](https://news.miami.edu/grad/stories/2022/10/congratulations-to-our-2022-2023-fellows.html) under the supervision of [Dr. Amy Zanne](https://amyzanne.org/). My research revolves around understanding how savanna habitats shape termite community diversity and structure in the Brazilian Cerrado.  
 
 
 <!-- adding share buttons on the right side of the page -->
