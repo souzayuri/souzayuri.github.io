@@ -26,10 +26,10 @@ I will divide the workflow of this tutorial into four main steps:
 The data used in this tutorial can be accessed [HERE](https://github.com/souzayuri/souzayuri.github.io/tree/main/_posts/2025-01-05-random_forest_sup_classific_r)
 
 The first thing we are gonna do is to load the required packages.
-We will use *raster* and *terra* to deal with raster data, *sf* for spatial vectors data, *tidyverse* for tabulate date and visualization, *caret* for random forest, and *mapview* for data viz.
+We will use *raster* and *terra* to deal with raster data, *sf* for spatial vectors data, *tidyverse* for tabulate date and visualization, *caret* for random forest, and *mapview* along with *leaflet* for data viz.
 
 
-```{r packages, size = "small", include=TRUE}
+```{r packages, size = "tiny", include=TRUE}
 
 if (!require("tidyverse")) install.packages("tidyverse")
 if (!require("terra")) install.packages("terra")

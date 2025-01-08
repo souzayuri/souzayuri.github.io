@@ -5,14 +5,14 @@
       "title": "About me and my interests",
       "author": [],
       "contents": "\r\n\r\nAbout me\r\nI am a data-driven researcher with solid experience in data science, specializing in statistical analysis, machine learning modeling, and data visualization across different formats and platforms. My interdisciplinary background in ecology and data science enables me to navigate between natural sciences, spatial analysis, and machine learning, applying these skills to solve complex problems in various areas. My focus is to search for patterns and clearly communicate them, making results accessible and transferable to different audiences through effective storytelling graphs such as dashboards and infographics. I am passionate about continuous learning and keeping up to date with new technologies and methodologies. Most recently, I started learning and translating my knowledge in geographical information systems to the Google Earth Engine platform as a way to automate satellite image processing. My academic experience has granted me skills that allow me to learn quickly and to seek knowledge outside my comfort zone. I like to collaborate and brainstorm with people, and over the last years, I was able to lead projects and build strong professional connections, enhancing my work in multidisciplinary fields. Besides being a scientist for my profession and personal life, I have been a technology and computer geek since my childhood. My next goal is to dive more into artificial intelligence and machine learning techniques to integrate different approaches and techniques aiming to automate data processing. I seek to work on projects that challenge my skills and involve integrating data science with different fields of knowledge.\r\nAcademic Background and Skills\r\nI have a bachelor’s in Ecology, a period in which I started to earning about ecosystem synergy from climate change to ecosystem services. During this period, I was a member of the Earth System Science Laboratory, which focused on the political resources that climate change and human adaptation affected. Under this laboratory supervision, I carried out my thesis project, where I simulated the future risks of the high CO² concentration for maintaining the hydrological cycles in the Amazon Forest. Such cycles are extremely important to sustain the quality of ecosystem services this tropical forest provides, including those related to fauna, flora, and local populations, as well as to different bioregions of Brazil. For this work, I received a highly competitive scholarship from a Brazilian governmental research support institution, FAPESP. This research also pleasured me to work directly at the beginning of the Amazon-FACE. Besides theoretical scientific learning, this experience allowed me to acquire skills related to data management and acquisition, GIS image processing, and programming language.\r\nIn between my BSc. in Ecology and my Master’s graduation, I applied my experience and skills in different laboratories, allowing me to learn and improve my knowledge of other topics. Most of my work and contributions during this period relied on mapping and conducting mammal surveys in the Brazilian Atlantic Forest. Meanwhile, I improved my skills in data manipulation, statistics, and GIS using tools such as R, Python, QGIS, and ArcGIS. These experiences significantly opened my mind to their real-world application through parametric and non-parametric statistical analysis and mapping approaches by identifying risk areas, modeling species, and improving fieldwork decisions by decreasing time spent and financial costs. Furthermore, during this time, I established connections with collaborators and started publishing papers as a first author and co-author.\r\nI performed a Master’s in Ecology and Biodiversity from 2019 to 2021. As part of my thesis, I worked on the BIOTA project, a long-term experiment with ten years of field data collection. This project aimed to investigate the effects of mammal defaunation on plant communities in the Brazilian Atlantic Forest. At this stage in my ecological career, I already had experience working with climate change and water balance models using theoretical plant physiology and mammal assemblage. However, my knowledge lacked in understanding organisms’ dynamics and diversity. For this purpose, I received a competitive fellowship from the FAPESP institution for the second time to investigate large mammalian herbivores’ temporal role in modulating plant composition, diversity, and dominance.\r\nAfter my master’s I did an MBA in Data Science & Analytics. Through this MBA, I created a project called ReSeed to improve my data management, storage, and visualization skills. I want to use these tools to help people during decision-making regarding data lack of information and potential collaborations. My project was part of a FAPESP technician fellowship I previously owned to work as a data curator of plant traits database under the supervision Dr. Marina Corrêa Côrtes.\r\nPresent\r\nI am currently pursuing a Masters in Biology at the University of Miami under the supervision of Dr. Amy Zanne. My research revolves around understanding how savanna habitats shape termite community diversity and structure in the Brazilian Cerrado.\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
-      "last_modified": "2025-01-08T14:28:48-05:00"
+      "last_modified": "2025-01-08T15:29:26-05:00"
     },
     {
       "path": "blog.html",
       "title": "Posts gallery",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
-      "last_modified": "2025-01-08T14:28:49-05:00"
+      "last_modified": "2025-01-08T15:29:27-05:00"
     },
     {
       "path": "contact.html",
@@ -20,35 +20,35 @@
       "description": "I am currently settled at the University of Miami.\n\nEmail: *yuri.souza@miami.edu* or *desouza.s.yuri@gmail.com*",
       "author": [],
       "contents": "\r\n\r\nCox Science Building,\r\n1301 Memorial Dr,\r\nRoom 204,\r\nCoral Gables, FL 33146,\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
-      "last_modified": "2025-01-08T14:28:51-05:00"
+      "last_modified": "2025-01-08T15:29:29-05:00"
     },
     {
       "path": "cv.html",
       "title": "Curriculum Vitae",
       "author": [],
       "contents": "\r\nAcademic CV (Click to download the )\r\n Or click here to access it on my \r\nProfessional CV (Click to download the )\r\n Or click here to access it on my \r\n\r\n\r\n\r\n\r\n\r\n\r\n",
-      "last_modified": "2025-01-08T14:28:52-05:00"
+      "last_modified": "2025-01-08T15:29:30-05:00"
     },
     {
       "path": "gallery.html",
       "title": "Some pictures of past fieldwork and collaborations",
       "author": [],
-      "contents": "\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
-      "last_modified": "2025-01-08T14:29:01-05:00"
+      "contents": "\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+      "last_modified": "2025-01-08T15:29:38-05:00"
     },
     {
       "path": "index.html",
       "title": " ",
       "author": [],
       "contents": "\r\n\r\n          \r\n          \r\n          Yuri Souza, Data Scientist\r\n          \r\n          About\r\n          Research\r\n          Blog\r\n          Publications\r\n          Gallery\r\n          Contact\r\n          CV\r\n          \r\n          \r\n          \r\n          \r\n          \r\n          \r\n          \r\n          \r\n          \r\n          \r\n          \r\n          \r\n          \r\n          \r\n          \r\n          \r\n          \r\n          ☰\r\n          \r\n          \r\n      \r\n        \r\n          \r\n            \r\n          \r\n          \r\n            \r\n              \r\n              \r\n\r\n              \r\n              \r\n              \r\n              Yuri Souza\r\n              I am an Ecologist fascinated by how the environment and\r\n              its organisms relate to each other to keep the world as we\r\n              know moving. Besides Ecology, I also spend a lot of time\r\n              reading and searching about technology, computing, and\r\n              Data Science. This last one was something that grew on me\r\n              in the past years, so I am trying to connect its\r\n              techniques and tools with Ecology studies. During my free\r\n              time, I like hanging out with people to have beers and\r\n              talk about books, tv series, games, and sci-fi. Fun (nerd)\r\n              fact about me: I love the Middle Earth histories.\r\n              \r\n              “Le nathlam hí, pedo mellon a minno”\r\n              \r\n              Visitors\r\n              \r\n              \r\n              \r\n\r\n              \r\n              \r\n              \r\n              \r\n              \r\n              \r\n              \r\n              \r\n              \r\n              \r\n              \r\n              \r\n            \r\n            \r\n              \r\n              \r\n\r\n              \r\n              \r\n              \r\n              Yuri Souza\r\n              I am an Ecologist fascinated by how the environment and\r\n              its organisms relate to each other to keep the world as we\r\n              know moving. Besides Ecology, I also spend a lot of time\r\n              reading and searching about technology, computing, and\r\n              Data Science. This last one was something that grew on me\r\n              in the past years, so I am trying to connect its\r\n              techniques and tools with Ecology studies. During my free\r\n              time, I like hanging out with people to have beers and\r\n              talk about books, tv series, games, and sci-fi. Fun (nerd)\r\n              fact about me: I love the Middle Earth histories.\r\n              \r\n              “Le nathlam hí, pedo mellon a minno”\r\n              \r\n              Visitors\r\n              \r\n              \r\n              \r\n\r\n              \r\n              \r\n              \r\n              \r\n              \r\n              \r\n              \r\n              \r\n              \r\n              \r\n              \r\n              \r\n            \r\n          \r\n\r\n          \r\n            \r\n              \r\n          \r\n\r\n          \r\n            \r\n              \r\n                              \r\n            \r\n          \r\n        \r\n      \r\n    \r\n\r\n    \r\n    \r\n    \r\n          © Copyright 2022 Yuri\r\n          Souza\r\n          Designed by distill\r\n          R-package and inspired by One-carat\r\n          Blog and JVC.\r\n          \r\n          \r\n\r\n    \r\n  ",
-      "last_modified": "2025-01-08T14:29:08-05:00"
+      "last_modified": "2025-01-08T15:29:44-05:00"
     },
     {
       "path": "publications.html",
       "title": "Publications",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
-      "last_modified": "2025-01-08T14:29:12-05:00"
+      "last_modified": "2025-01-08T15:29:50-05:00"
     },
     {
       "path": "research.html",
@@ -56,7 +56,7 @@
       "description": "Work in progress\n",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
-      "last_modified": "2025-01-08T14:29:13-05:00"
+      "last_modified": "2025-01-08T15:29:51-05:00"
     }
   ],
   "collections": ["posts/posts.json"]
