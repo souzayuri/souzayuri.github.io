@@ -155,6 +155,67 @@ mapview::viewRGB(brick(cropped_raster_bands[[1:3]]),
 
 ```
 
+Now that we have checked and named the raster bands and visualized the raster overlapped with the features that will be used for training and testing the RF model, lets do an additional raster calculation to improve the model quality in identifying features. In this step we will create a map containing the calculations of the NDVI, EVI, and SAVI index using the band composition of our raster image.
+
+```{r visualizing datab, echo = TRUE, include=TRUE}
+
+cropped_raster_bands_ndvi <- (cropped_raster_bands[[5]] - cropped_raster_bands[[3]]) / (cropped_raster_bands[[5]] + cropped_raster_bands[[3]])
+cropped_raster_bands_ndvi
+
+cropped_raster_bands_evi <- 2.5 * ((cropped_raster_bands[[5]] - cropped_raster_bands[[3]]) /
+    (cropped_raster_bands[[5]] + 6 * cropped_raster_bands[[3]] - 7.5 * cropped_raster_bands[[1]] + 1))
+cropped_raster_bands_evi
+
+cropped_raster_bands_savi <- 2.5 * ((cropped_raster_bands[[5]] - cropped_raster_bands[[3]]) /
+    (cropped_raster_bands[[5]] + 6 * cropped_raster_bands[[3]] - 7.5 * cropped_raster_bands[[1]] + 1))
+cropped_raster_bands_savi
+
+cropped_raster_bands_savi <- ((cropped_raster_bands[[5]] - cropped_raster_bands[[3]]) /
+    (cropped_raster_bands[[5]] + cropped_raster_bands[[3]] + 0.5)) * (1 + 0.5)
+cropped_raster_bands_savi
+
+# Create a red-to-green color palette
+red_to_green_palette <- colorRampPalette(c("darkred", "yellow", "darkgreen"))
+# Lets visuallize them together
+par(mfrow = c(1, 3))
+
+plot(cropped_raster_bands_ndvi, main = "NDVI", col = red_to_green_palette(100))
+plot(cropped_raster_bands_evi, main = "EVI", col = red_to_green_palette(100))
+plot(cropped_raster_bands_savi, main = "SAVI", col = red_to_green_palette(100))
+
+par(mfrow = c(1, 1))
+
+
+```
+Let's stack these three indexes in our raster data so we can have more information to feed the model. After stacking the rasters containing the indexes with our main raster, we will notice that the new rasters are named as NIR. That is because the first spectral band we used in the above calculations was the NIR band. To avoid confusion between the NIR spectral band and the new rasters indexes, we will name them according to which index they represent.
+
+```{r visualizing datax, echo = TRUE, include=TRUE}
+
+train_features_clnd_indexes <- c(cropped_raster_bands, 
+                                 cropped_raster_bands_ndvi,
+                                 cropped_raster_bands_evi, 
+                                 cropped_raster_bands_savi)
+train_features_clnd_indexes
+
+
+names(train_features_clnd_indexes) <- c(names(cropped_raster_bands),"NDVI", "EVI", "SAVI")
+train_features_clnd_indexes
+
+plot(train_features_clnd_indexes)
+
+```
+
+
+Now we have everything to move forward to prepare the data that will be use for training and testing our RF model. 
+Lets get started by extracting the pixel values for those features we mapped. These pixel values will be used to train and test the model later.
+
+```{r visualizing datas, echo = TRUE, include=TRUE}
+
+train_features_clnd_pxls <- extract(train_features_clnd_indexes, train_features_clnd)
+head(train_features_clnd_pxls)
+
+```
+
 [Post Cover Image Credits](https://ecce.esri.ca/mac-blog/2019/06/03/random-forest-classification-with-r-and-collector-for-arcgis/)
 
 ```{r setup, include=FALSE}
