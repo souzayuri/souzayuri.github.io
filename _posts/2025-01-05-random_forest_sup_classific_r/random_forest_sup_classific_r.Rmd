@@ -39,6 +39,8 @@ if (!require("sp")) install.packages("sp")
 if (!require("caret")) install.packages("caret")
 if (!require("mapview")) install.packages("mapview")
 if (!require("leaflet")) install.packages("leaflet")
+if (!require("ggridges")) install.packages("ggridges")
+
 
 ```
 
@@ -73,27 +75,34 @@ plot(train_features_clnd)
 
 
 # Compare CRS
-if (terra::crs(raw_raster) == terra::crs(train_features)) {
+if (terra::crs(raw_raster) == terra::crs(train_features_clnd)) {
   print("CRS are identical!")
 } else {
   print("CRS are different. Therefore, reprojecting to match raster projection...")
   # Reproject train_features to match raw_raster
-  train_features <- sf::st_transform(train_features, crs = terra::crs(raw_raster))
+  train_features_clnd <- sf::st_transform(train_features_clnd, crs = terra::crs(raw_raster))
 }
 
 
 # Compare CRS
-if (terra::crs(raw_raster) == terra::crs(train_features)) {
+if (terra::crs(raw_raster) == terra::crs(train_features_clnd)) {
   print("CRS are identical!")
 } else {
   print("CRS are different. Therefore, reprojecting to match raster projection...")
   # Reproject train_features to match raw_raster
-  train_features <- sf::st_transform(train_features, crs = terra::crs(raw_raster))
+  train_features_clnd <- sf::st_transform(train_features_clnd, crs = terra::crs(raw_raster))
 }
 
 
 
 ```
+```{r data structure, size = "small", include=TRUE}
+glimpse(train_features_clnd)
+summary(train_features_clnd)
+
+```
+
+
 Now, lets crop the raster and check projection
 
 ```{r cropping data, size = "small", include=TRUE}
@@ -104,12 +113,12 @@ plot(cropped_raster)
 
 
 # Compare CRS
-if (terra::crs(raw_raster) == terra::crs(train_features)) {
+if (terra::crs(raw_raster) == terra::crs(train_features_clnd)) {
   print("CRS are identical!")
 } else {
   print("CRS are different. Therefore, reprojecting to match raster projection...")
   # Reproject train_features to match raw_raster
-  train_features <- terra::project(train_features, crs(raw_raster))
+  train_features_clnd <- terra::project(train_features_clnd, crs(raw_raster))
 }
 
 
@@ -159,16 +168,13 @@ Now that we have checked and named the raster bands and visualized the raster ov
 
 ```{r visualizing datab, echo = TRUE, include=TRUE}
 
-cropped_raster_bands_ndvi <- (cropped_raster_bands[[5]] - cropped_raster_bands[[3]]) / (cropped_raster_bands[[5]] + cropped_raster_bands[[3]])
+cropped_raster_bands_ndvi <- (cropped_raster_bands[[5]] - cropped_raster_bands[[3]]) / 
+  (cropped_raster_bands[[5]] + cropped_raster_bands[[3]])
 cropped_raster_bands_ndvi
 
 cropped_raster_bands_evi <- 2.5 * ((cropped_raster_bands[[5]] - cropped_raster_bands[[3]]) /
     (cropped_raster_bands[[5]] + 6 * cropped_raster_bands[[3]] - 7.5 * cropped_raster_bands[[1]] + 1))
 cropped_raster_bands_evi
-
-cropped_raster_bands_savi <- 2.5 * ((cropped_raster_bands[[5]] - cropped_raster_bands[[3]]) /
-    (cropped_raster_bands[[5]] + 6 * cropped_raster_bands[[3]] - 7.5 * cropped_raster_bands[[1]] + 1))
-cropped_raster_bands_savi
 
 cropped_raster_bands_savi <- ((cropped_raster_bands[[5]] - cropped_raster_bands[[3]]) /
     (cropped_raster_bands[[5]] + cropped_raster_bands[[3]] + 0.5)) * (1 + 0.5)
@@ -214,7 +220,89 @@ Lets get started by extracting the pixel values for those features we mapped. Th
 train_features_clnd_pxls <- extract(train_features_clnd_indexes, train_features_clnd)
 head(train_features_clnd_pxls)
 
+
+train_features_clnd_pxls$Class <- train_features_clnd$Class[train_features_clnd_pxls$ID]
+head(train_features_clnd_pxls)
+
+train_features_clnd_pxls$ID <- NULL
+
+summary(train_features_clnd_pxls)
+
 ```
+Now that we have given those polygons delimitation pixel information, lets take a look at some of these pixels distribution
+
+```{r}
+
+val_grass <- subset(train_features_clnd_pxls, Class == "grass")
+head(val_grass)
+val_trees <- subset(train_features_clnd_pxls, Class == "trees")
+head(val_trees)
+val_bare_soil <- subset(train_features_clnd_pxls, Class == "bare_soil")
+head(val_bare_soil)
+
+# NDVI
+par(mfrow = c(3, 1))
+hist(val_grass$NDVI, main = "grass", xlab = "NDVI", xlim = c(0, 1), col = "#e5ca81")
+hist(val_trees$NDVI, main = "trees", xlab = "NDVI", xlim = c(0, 1), col = "#81a581")
+hist(val_bare_soil$NDVI, main = "bare_soil", xlab = "NDVI", xlim = c(0, 1), col = "#7b6f89")
+
+
+par(mfrow = c(1, 1))
+
+# Scatterplot of bands 8a and 11 for the three classes
+plot(Red ~ NIR, data = val_grass, pch = ".", col = "#e5ca81")
+points(Red ~ NIR, data = val_trees, pch = ".", col = "#81a581")
+points(Red ~ NIR, data = val_bare_soil, pch = ".", col = "#7b6f89")
+legend("topright", legend = c("grass", "trees", "bare_soil"), fill = c("#e5ca81", "#7b6f89", "#81a581"), bg = "white")
+
+
+```
+Lets visualize the three indexes for each mapped feature in a single graph
+
+```{r}
+
+train_features_clnd_pxls_indexes <- train_features_clnd_pxls |> 
+  dplyr::select(c(NDVI, EVI, SAVI, Class)) |> 
+  tidyr::pivot_longer(cols = 1:3, values_to = "values", names_to = "indexes")
+train_features_clnd_pxls_indexes
+
+
+# add the distribution curve for each indexes parameter using stat_function and dnorm function
+ggplot(train_features_clnd_pxls_indexes, 
+                        aes(x = values, 
+                            fill = indexes)) +
+  geom_density_ridges(aes(y = 0, fill = indexes, color = indexes),  
+                      jittered_points = TRUE, 
+                      alpha = .5, 
+                      scale = 1,
+                      point_shape = "|",
+                      point_size = 3, 
+                      position = ggridges::position_points_jitter(width = 0.05, height = 0)) +  
+    geom_vline(data = train_features_clnd_pxls_indexes |> 
+               dplyr::group_by(Class, indexes) |> 
+               dplyr::summarise(mean = mean(values), .groups = "drop") |> 
+               dplyr::ungroup(),
+             aes(xintercept = mean, color = indexes), linetype = "dashed", size = 0.8) +
+  scale_fill_manual(values = c("#e5ca81", "#7b6f89", "#81a581"), labels = c("EVI", "NDVI", "SAVI")) +
+  scale_color_manual(values = c("#e5ca81", "#7b6f89", "#81a581"), labels = c("EVI", "NDVI", "SAVI")) +
+  theme_bw() + labs(x = "", y = "Frequency") +
+  theme(axis.title = element_text(size = 20, face = "bold", color = "gray20"),
+        axis.text.x.bottom = element_text(size = 14),
+        axis.text.y = element_text(size = 14),
+        legend.direction = "horizontal",
+        legend.position = "bottom",
+        legend.title = element_text(size = 16, face = "bold"),
+        legend.text = element_text(size = 14),
+        title = element_text(size = 18)) +
+  facet_wrap(~Class, ncol = 3, scales = "free")
+
+
+```
+
+```{r}
+
+```
+
 
 [Post Cover Image Credits](https://ecce.esri.ca/mac-blog/2019/06/03/random-forest-classification-with-r-and-collector-for-arcgis/)
 
