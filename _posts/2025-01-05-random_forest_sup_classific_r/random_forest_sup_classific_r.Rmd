@@ -40,6 +40,8 @@ if (!require("caret")) install.packages("caret")
 if (!require("mapview")) install.packages("mapview")
 if (!require("leaflet")) install.packages("leaflet")
 if (!require("ggridges")) install.packages("ggridges")
+if (!require("randomForest")) install.packages("randomForest")
+if (!require("tmap")) install.packages("tmap")
 
 
 ```
@@ -231,8 +233,7 @@ summary(train_features_clnd_pxls)
 ```
 Now that we have given those polygons delimitation pixel information, lets take a look at some of these pixels distribution
 
-```{r}
-
+```{r visualizing indexes histogram, echo = TRUE, include=TRUE}
 val_grass <- subset(train_features_clnd_pxls, Class == "grass")
 head(val_grass)
 val_trees <- subset(train_features_clnd_pxls, Class == "trees")
@@ -245,21 +246,36 @@ par(mfrow = c(3, 1))
 hist(val_grass$NDVI, main = "grass", xlab = "NDVI", xlim = c(0, 1), col = "#e5ca81")
 hist(val_trees$NDVI, main = "trees", xlab = "NDVI", xlim = c(0, 1), col = "#81a581")
 hist(val_bare_soil$NDVI, main = "bare_soil", xlab = "NDVI", xlim = c(0, 1), col = "#7b6f89")
+```
 
 
+```{r visualizing indexes effects, echo = TRUE, include=TRUE}
 par(mfrow = c(1, 1))
 
-# Scatterplot of bands 8a and 11 for the three classes
-plot(Red ~ NIR, data = val_grass, pch = ".", col = "#e5ca81")
-points(Red ~ NIR, data = val_trees, pch = ".", col = "#81a581")
-points(Red ~ NIR, data = val_bare_soil, pch = ".", col = "#7b6f89")
-legend("topright", legend = c("grass", "trees", "bare_soil"), fill = c("#e5ca81", "#7b6f89", "#81a581"), bg = "white")
+# Scatterplot and trend lines of NIR and SAVI bands 
+plot(NDVI ~ EVI, data = val_grass, pch = ".", col = "#e5ca81", xlab = "SAVI", ylab = "NDVI")
+points(NDVI ~ EVI, data = val_trees, pch = ".", col = "#81a581")
+points(NDVI ~ EVI, data = val_bare_soil, pch = ".", col = "#7b6f89")
+
+
+model_grass <- lm(NDVI ~ EVI, data = val_grass) 
+abline(model_grass, col = "#e5ca81", lwd = 2)    
+
+model_trees <- lm(NDVI ~ EVI, data = val_trees) 
+abline(model_trees, col = "#81a581", lwd = 2)   
+
+
+model_bare_soil <- lm(NDVI ~ EVI, data = val_bare_soil) 
+abline(model_bare_soil, col = "#7b6f89", lwd = 2)        
+
+legend("topright", legend = c("grass", "trees", "bare_soil"), 
+       fill = c("#e5ca81", "#7b6f89", "#81a581"), bg = "white")
 
 
 ```
 Lets visualize the three indexes for each mapped feature in a single graph
 
-```{r}
+```{r visualizing and comparing indexes distribution using histograms, echo = TRUE, include=TRUE}
 
 train_features_clnd_pxls_indexes <- train_features_clnd_pxls |> 
   dplyr::select(c(NDVI, EVI, SAVI, Class)) |> 
@@ -299,7 +315,142 @@ ggplot(train_features_clnd_pxls_indexes,
 
 ```
 
-```{r}
+Now lets build the train and test data. At this stage we partition our dataset into two, thats a train and test dataset. 
+We train the model with the train dataset and evaluate the model perfomance using the test data.
+
+We would use the caret function createDataPartition() to split data into training and testing sets.
+
+```{r partitioning the data, echo = TRUE, include=TRUE}
+set.seed(124) 
+
+str(train_features_clnd_pxls)
+
+# partitioning the data into 80%
+rf_train_features_clnd_pxls_indexes <- caret::createDataPartition(train_features_clnd_pxls$Class, list = FALSE, p = 0.8)
+```
+
+Now that we have partitioned 80% of the dataset, we will select that portion of that data to be used as train data (80%) and test data (20%)
+If we check the number of rows in the new datasets and use the "rule of three" equation we can confirm that the data was properly split just as asked. 
+
+```{r extracting the data to be used as train and test, echo = TRUE, include=TRUE}
+# setting 80% for training - Use rf_train_features_clnd_pxls_indexes as a vector of row indices that specify which rows to extract from the train_features_clnd_pxls_indexes dataset.
+rf_train_data <- train_features_clnd_pxls[rf_train_features_clnd_pxls_indexes, ] 
+str(rf_train_data)
+
+# setting 20% for training - Use rf_train_features_clnd_pxls_indexes as a vector of row indices that specify which rows to extract from the train_features_clnd_pxls_indexes dataset.
+rf_test_data <- train_features_clnd_pxls[-rf_train_features_clnd_pxls_indexes, ]
+str(rf_test_data)
+
+```
+
+
+Lets check the proportion of features selected by each set of data
+
+```{r training features, echo = TRUE, include=TRUE}
+rf_train_data_classCount <- rf_train_data |> 
+  dplyr::group_by(Class) |> 
+  count()
+
+rf_train_data_classCount
+
+```
+
+
+```{r training feature proportions, echo = TRUE, include=TRUE}
+(prop.table(table(rf_train_data$Class))*100)
+
+```
+
+
+```{r testing features, echo = TRUE, include=TRUE}
+rf_test_data_classCount <- rf_test_data |> 
+  dplyr::group_by(Class) |> 
+  count()
+
+rf_test_data_classCount
+
+```
+Proportion of the response Classes that makes up the training data.
+
+```{r testing feature proportions, echo = TRUE, include=TRUE}
+(prop.table(table(rf_test_data$Class))*100)
+
+
+```
+The function trainControl generates parameters that further control how models are created
+
+```{r setting the RF parameters, echo = TRUE, include=TRUE}
+
+
+set.seed(124)
+cvControl <- caret::trainControl(method = 'cv',
+                                 number = 10,
+                                 savePredictions = TRUE,
+                                 verboseIter = FALSE)
+
+
+respVar <- c("Class")
+predVar <- c("Blue","Green","Red","RE","NIR","NDVI","EVI","SAVI")
+
+
+rfModel <- caret::train(rf_train_data[,predVar],
+                        rf_train_data[,respVar],
+                        method="rf",
+                        metric = "Kappa",
+                        ntree= 500,
+                        trControl= cvControl,
+                        tuneLength=6,
+                        importance=TRUE)
+
+
+rfModel
+
+
+
+```
+
+
+```{r predicting, echo = TRUE, include=TRUE}
+
+rfPredict <- predict(rfModel,rf_test_data)
+rfPredict
+
+confusionMatrix(rfPredict,rf_test_data$Class)
+
+
+```
+
+```{r classifying, echo = TRUE, include=TRUE}
+
+bawkuPredictions <- raster::predict(train_features_clnd_indexes, rfModel) 
+
+```
+```{r plotting, echo = TRUE, include=TRUE}
+
+
+
+#Lets define the plalette(mainly be using Hexadecimal colours).
+pal <-c('#404040','#6a51a3','#1a9641')
+
+tm_shape(bawkuPredictions)+
+  tm_raster(style = "cat",labels = c("bare_soil",
+                                     "grass",
+                                     "trees"),
+            palette = pal,
+            title = "Legend")+
+  tm_layout(main.title= "",
+            main.title.size =.9 )+
+  tm_layout(legend.outside = TRUE,
+            legend.outside.position = "right",
+            legend.title.size = .8)
+
+
+
+
+
+
+
+
 
 ```
 
