@@ -405,15 +405,13 @@ rfModel <- caret::train(rf_train_data[,predVar],
 
 rfModel
 
-
-
 ```
 
 
 ```{r predicting, echo = TRUE, include=TRUE}
 
 rfPredict <- predict(rfModel,rf_test_data)
-rfPredict
+head(rfPredict)
 
 confusionMatrix(rfPredict,rf_test_data$Class)
 
@@ -430,7 +428,7 @@ bawkuPredictions <- raster::predict(train_features_clnd_indexes, rfModel)
 
 
 #Lets define the plalette(mainly be using Hexadecimal colours).
-pal <-c('#404040','#6a51a3','#1a9641')
+pal <-c("#7b6f89", "#e5ca81", "#81a581")
 
 tm_shape(bawkuPredictions)+
   tm_raster(style = "cat",labels = c("bare_soil",
