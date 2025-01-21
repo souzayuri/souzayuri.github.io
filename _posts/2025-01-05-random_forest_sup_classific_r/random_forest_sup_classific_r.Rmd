@@ -41,8 +41,9 @@ if (!require("mapview")) install.packages("mapview")
 if (!require("leaflet")) install.packages("leaflet")
 if (!require("ggridges")) install.packages("ggridges")
 if (!require("randomForest")) install.packages("randomForest")
+if (!require("DiagrammeR")) install.packages("DiagrammeR")
 if (!require("tmap")) install.packages("tmap")
-
+if (!require("leafem")) install.packages("leafem")
 
 ```
 
@@ -380,8 +381,6 @@ Proportion of the response Classes that makes up the training data.
 The function trainControl generates parameters that further control how models are created
 
 ```{r setting the RF parameters, echo = TRUE, include=TRUE}
-
-
 set.seed(124)
 cvControl <- caret::trainControl(method = 'cv',
                                  number = 10,
@@ -397,13 +396,35 @@ rfModel <- caret::train(rf_train_data[,predVar],
                         rf_train_data[,respVar],
                         method="rf",
                         metric = "Kappa",
-                        ntree= 500,
+                        ntree= 1000,
                         trControl= cvControl,
                         tuneLength=6,
                         importance=TRUE)
 
-
 rfModel
+
+```
+
+
+
+```{r plot model, echo = TRUE, include=TRUE}
+
+plot(rfModel)
+
+```
+```{r var error, echo = TRUE, include=TRUE}
+
+plot(rfModel$finalModel)
+
+
+```
+
+
+
+```{r var contribution, echo = TRUE, include=TRUE}
+
+varImpPlot(rfModel$finalModel)
+
 
 ```
 
@@ -413,24 +434,40 @@ rfModel
 rfPredict <- predict(rfModel,rf_test_data)
 head(rfPredict)
 
-confusionMatrix(rfPredict,rf_test_data$Class)
+conf_matrix <- confusionMatrix(rfPredict, rf_test_data$Class)
+conf_matrix
 
+conf_table <- as.data.frame(conf_matrix$table)
+
+colnames(conf_table) <- c("Predicted", "Actual", "Frequency")
+conf_table
+
+ggplot(data = conf_table, aes(x = Actual, y = Predicted, fill = Frequency)) +
+  geom_tile(color = "white") +
+  scale_fill_gradient(low = "white", high = "darkgreen") +
+  geom_text(aes(label = Frequency), color = "black", size = 5) +
+  labs(title = "Confusion Matrix Heatmap",
+       x = "Actual Labels",
+       y = "Predicted Labels",
+       fill = "Frequency") +
+  theme_minimal(base_size = 14) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 ```
 
 ```{r classifying, echo = TRUE, include=TRUE}
 
-bawkuPredictions <- raster::predict(train_features_clnd_indexes, rfModel) 
+image_lc_predict <- raster::predict(train_features_clnd_indexes, rfModel) 
 
 ```
+
+
 ```{r plotting, echo = TRUE, include=TRUE}
-
-
 
 #Lets define the plalette(mainly be using Hexadecimal colours).
 pal <-c("#7b6f89", "#e5ca81", "#81a581")
 
-tm_shape(bawkuPredictions)+
+tm_shape(image_lc_predict)+
   tm_raster(style = "cat",labels = c("bare_soil",
                                      "grass",
                                      "trees"),
@@ -443,12 +480,40 @@ tm_shape(bawkuPredictions)+
             legend.title.size = .8)
 
 
+```
 
 
 
+```{r plotting interactively, echo = TRUE, include=TRUE}
+
+raster_lc_predict <- raster(image_lc_predict)
+
+# Define the palette for the classified raster
+pal <- colorFactor(
+  palette = c("#7b6f89", "#e5ca81", "#81a581"), 
+  levels = c(1, 2, 3),
+  na.color = "transparent" 
+)
 
 
-
+leaflet() |> 
+  addTiles(group = "Base Map") |> 
+  addRasterRGB(brick(cropped_raster_bands[[1:3]]),
+               r = 3, g = 2, b = 1,
+               group = "RGB Image") |> 
+  addRasterImage(raster_lc_predict,
+                 colors = pal,
+                 opacity = 0.4,
+                 group = "Land Cover Classification") |> 
+  addLegend(pal = pal,
+            values = c(1, 2, 3), 
+            title = "Land Cover Classification",
+            labels = c("bare_soil", "grass", "trees"),
+            position = "bottomright") |> 
+    addLayersControl(
+    baseGroups = c("Base Map", "RGB Image"),
+    overlayGroups = c("Land Cover Classification"),
+    options = layersControlOptions(collapsed = FALSE))
 
 ```
 
