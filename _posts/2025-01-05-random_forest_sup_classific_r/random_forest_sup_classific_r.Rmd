@@ -44,6 +44,8 @@ if (!require("randomForest")) install.packages("randomForest")
 if (!require("DiagrammeR")) install.packages("DiagrammeR")
 if (!require("tmap")) install.packages("tmap")
 if (!require("leafem")) install.packages("leafem")
+if (!require("plotly")) install.packages("plotly")
+
 
 ```
 
@@ -518,10 +520,45 @@ leaflet() |>
 ```
 
 
+``` {r visualizing pixel frequency, echo = TRUE, include=TRUE}
+
+
+raster_lc_predict_df <- as.data.frame(raster_lc_predict) |> 
+  mutate(category = case_when(
+    class == 1 ~ "bare_soil",
+    class == 2 ~ "grass",
+    class == 3 ~ "trees",
+    TRUE ~ NA_character_)) |> 
+  group_by(category) |> 
+  summarise(count = n()) |> 
+  ungroup() |> 
+  mutate(prop = round(((count*100)/(sum(count))), 2)) |> 
+  arrange(desc(prop))
+
+head(raster_lc_predict_df)
+
+
+plot_ly(raster_lc_predict_df, 
+        x = ~category, 
+        y = ~prop,
+        type = "bar",
+        text = ~prop, 
+        textposition = 'auto') |> 
+        layout(title = "Vegetation Cover",
+               xaxis = list(title = "Vegetation Type",
+                            tickvals = c("bare_soil", "grass", "trees"),
+                            ticktext = c("Bare Soil", "Grass", "Trees")),
+               yaxis = list(title = "Cover Proportation (%)")) 
+
+```
+
+
 [Post Cover Image Credits](https://ecce.esri.ca/mac-blog/2019/06/03/random-forest-classification-with-r-and-collector-for-arcgis/)
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+
+
 ```
 
 <!-- adding share buttons on the right side of the page -->
