@@ -35,8 +35,8 @@ navbar:
       href: index.html
     - text: "About"
       href: about.html
-    - text: "Research"
-      href: research.html
+#    - text: "Research"
+#      href: research.html
     - text: "Blog" 
       href: blog.html
     - text: "Publications"

@@ -36,11 +36,18 @@ make_gallery_layout <- function() {
   
   images[] <- lapply(images, rev)
   
-  tagList(apply(images, 1, function(x) {
-    tags$a(
-      href = paste0("gallery/img/", x[["images_full_size"]]),
-      tags$img(src = paste0("gallery/img/", x[["images_thumb"]]))
-    )
-  }))
-  
+  tagList(
+    apply(images, 1, function(x) {
+      tags$a(
+        href = paste0("gallery/img/", x[["images_full_size"]]),
+        style = "display: inline-block; margin: 5px;", # Ensures side-by-side layout
+        tags$img(
+          src = paste0("gallery/img/", x[["images_thumb"]]),
+          style = "width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;"
+        )
+      )
+    })
+  )
 }
+
+
