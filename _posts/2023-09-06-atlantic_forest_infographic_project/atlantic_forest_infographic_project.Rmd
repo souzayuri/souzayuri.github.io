@@ -3,7 +3,7 @@ title: "Animal species records history in the Atlantic Forest"
 description: |
   This was my final project for the course "Introduction to Infographics and Data Visualization".
 categories:
-  - Visualization
+  - Infographics
 author:
   - name: Yuri Souza
 date: 2023-09-06

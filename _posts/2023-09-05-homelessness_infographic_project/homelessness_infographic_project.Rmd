@@ -3,7 +3,7 @@ title: "Homeless in New York State"
 description: |
   This was my second project for the course "Introduction to Infographics and Data Visualization".
 categories:
-  - Visualization
+  - Infographics
 author:
   - name: Yuri Souza
 date: 2023-09-05

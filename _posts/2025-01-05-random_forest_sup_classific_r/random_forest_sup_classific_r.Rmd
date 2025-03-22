@@ -1,29 +1,70 @@
 ---
-title: "Image Supervised Classification with Random Forest in R"
+title: "Supervised Image Classification with Random Forest in R"
 description: |
-  Here I demonstrate how to load and visualize georeferenced spatial data along with a supervised random forest classification.
-  This is a work in progress and should be finished in the upcoming days.
+  In this post, I demonstrate how to load and visualize georeferenced spatial data and perform a supervised random forest classification using R.
 categories:
   - Machine Learning 
   - GIS
+  - R
 author:
   - name: Yuri Souza
-date: 2025-01-05
+date: 2025-03-21
 preview: RF_example.png
 output:
   distill::distill_article:
     self_contained: false
 
 ---
+*Quick intro and backgroung*
 
-I will divide the workflow of this tutorial into four main steps:
+Machine learning has been one of my favorite topics over the last few years, as I have been using approaches such as predictive models and cluster analysis. However, these are just a subset of the machine learning potential. With that in mind, I decided to take a step forward and learn what I believe to be the next topic in my field of expertise: Supervised Image Classification. This is a highly effective method for automatically identifying features in an image, such as forest patches, crops, urban areas, water bodies, and so on. In a few words, the way it works is by telling an algorithm how each of these features looks like and then it search in the images for patterns on pixel aggregation that resemble the patterns of the input feature.    
 
-1. Getting the data read
-2. Train Model
-3. Evaluate Model
-4. Classify Image
+I've been trying to perform supervised image classification of satellite images in R for a while, and I've always stumbled upon conceptual problems, such as: How to do it? Which parameters to use for validation? Which packages and functions? 
 
-The data used in this tutorial can be accessed [HERE](https://github.com/souzayuri/souzayuri.github.io/tree/main/_posts/2025-01-05-random_forest_sup_classific_r)
+Even though this has been a very popular technique across remote sensing people and is widely available to learn on the internet, it is definitely easier to find tutorials for Python or software such as ArcGIS and QGIS than it is for R. I'm not saying there aren't tutorials in R out there, in fact, the content available here is from those tutorials, but I found this information very spread across a few blogs and a bit scarce.
+So, after struggling to find a tutorial that I liked, I decided to create my own tutorial, based on what I could find online, while also adding my own touch. 
+
+This is my attempt to learn how to perform supervised image classification, using the random forest algorithm. I'm pretty sure there are many other ways to carry it out, and definitely more efficient ones, but this is what I could get so far and I believe that will suite a large audience. 
+
+For the record, this tutorial is a compilation of what is available in following blogs and tutorials:
+
+- [WUR Geoscripting](https://geoscripting-wur.github.io/AdvancedRasterAnalysis/)
+
+- [Cornell University](https://www.css.cornell.edu/faculty/dgr2/_static/files/R_html/CompareRandomForestPackages.html)
+
+- [University of Cincinnati](https://uc-r.github.io/random_forests)
+
+- [RPubs](https://rpubs.com/ials2un/rf_landcover)
+
+- [RPubs](https://www.rpubs.com/BenKwesie/792661)
+
+- [R-bloggers](https://www.r-bloggers.com/2021/04/random-forest-in-r/)
+
+- [R Spatial](https://rspatial.org/rs/5-supclassification.html)
+
+- [Valentin Stefan](https://valentinitnelav.github.io/satellite-image-classification-r/)
+
+- [Urban Spatial](https://urbanspatial.github.io/classifying_satellite_imagery_in_R/)
+
+
+**That said, lets get started!!!**
+
+I divided the workflow of this tutorial into four main steps:
+
+**1.** Getting the data ready
+
+**2.** Training the model
+
+**3.** Evaluating the model
+
+**4.** Classifying the image
+
+**5.** Exploring the results
+
+
+If you want to follow and try each step described here by yourself please download the data [HERE](https://github.com/souzayuri/souzayuri.github.io/tree/main/_posts/2025-01-05-random_forest_sup_classific_r)
+
+
 
 The first thing we are gonna do is to load the required packages.
 We will use *raster* and *terra* to deal with raster data, *sf* for spatial vectors data, *tidyverse* for tabulate date and visualization, *caret* for random forest, and *mapview* along with *leaflet* for data viz.

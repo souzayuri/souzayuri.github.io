@@ -5,6 +5,8 @@ listing:
     - 2025-01-05-random_forest_sup_classific_r
     - 2023-09-06-atlantic_forest_infographic_project
     - 2023-09-05-homelessness_infographic_project
+    - 2023-01-06-um_grad_symposium
+    - 2023-04-07-um_climate_health_symposium
     - 2022-09-14-building-my-3rd-shinyapp
     - 2022-09-14-building-my-2nd-shinyapp
     - 2022-09-14-building-my-1st-shinyapp
