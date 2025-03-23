@@ -1,5 +1,5 @@
 name: "yuri_souza"
-title: "Yuri Souza, Data Scientist"
+title: "Yuri Souza, Ecologist"
 #favicon: icons/favicon.ico
 base_url: https://souzayuri.github.io/
 repository_url: https://github.com/souzayuri/souzayuri.github.io 
@@ -43,6 +43,8 @@ navbar:
       href: publications.html
     - text: "Gallery"
       href: gallery.html
+    - text: "Nature Pics!"
+      href: nature_pics.html
     - text: "Contact"
       href: contact.html
     - text: "CV"
