@@ -94,10 +94,16 @@ make_gallery_layout <- function() {
       
       tags$a(
         href = paste0("gallery/nature/", x[["images_full_size"]]),
+        `data-src` = paste0("gallery/nature/", x[["images_full_size"]]),
+        `data-sub-html` = paste0("<h4>", formatted_name, "</h4>"),
+        class = "gallery-item",
+        `data-exthumbimage` = paste0("gallery/nature/", x[["images_thumb"]]),
         style = "display: inline-block; margin: 5px; text-align: center; width: 160px;", 
         tags$img(
           src = paste0("gallery/nature/", x[["images_thumb"]]),
-          style = "width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;"
+          alt = formatted_name,
+          style = "width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;",
+          class = "gallery-thumbnail"
         ),
         tags$div(
           HTML(formatted_name),
@@ -106,4 +112,42 @@ make_gallery_layout <- function() {
       )
     })
   )
+}
+
+# Helper function to improve display of image names
+format_bird_name <- function(filename) {
+  # Remove file extension
+  name <- sub("\\.jpg$|\\.jpeg$|\\.png$|\\.gif$", "", filename, ignore.case = TRUE)
+  
+  # Replace underscores and hyphens with spaces
+  name <- gsub("[_-]", " ", name)
+  
+  # Capitalize first letter of each word
+  name <- gsub("(^|\\s)([a-z])", "\\1\\U\\2", name, perl = TRUE)
+  
+  return(name)
+}
+
+# Function to add magnifying glass to image thumbnails
+add_magnifier_to_images <- function() {
+  # This function gets called from R but injects JavaScript to add magnifiers
+  htmltools::tags$script(HTML("
+    document.addEventListener('DOMContentLoaded', function() {
+      // Select all gallery thumbnails
+      var thumbnails = document.querySelectorAll('.gallery-thumbnail');
+      
+      // For each thumbnail, add a magnifier icon
+      thumbnails.forEach(function(img) {
+        var parent = img.parentNode;
+        
+        // Create the magnifier div
+        var magnifier = document.createElement('div');
+        magnifier.className = 'magnifier-icon';
+        magnifier.innerHTML = '<i class=\"fas fa-search-plus\"></i>';
+        
+        // Add it after the image
+        parent.appendChild(magnifier);
+      });
+    });
+  "))
 }
