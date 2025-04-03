@@ -15,7 +15,7 @@ output:
     self_contained: false
 
 ---
-*Quick intro and backgroung*
+## **Quick intro and backgroung**
 
 Machine learning has been one of my favorite topics over the last few years, as I have been using approaches such as predictive models and cluster analysis. However, these are just a subset of the machine learning potential. With that in mind, I decided to take a step forward and learn what I believe to be the next topic in my field of expertise: Supervised Image Classification. This is a highly effective method for automatically identifying features in an image, such as forest patches, crops, urban areas, water bodies, and so on. In a few words, the way it works is by telling an algorithm how each of these features looks like and then it search in the images for patterns on pixel aggregation that resemble the patterns of the input feature.    
 
@@ -47,28 +47,43 @@ For the record, this tutorial is a compilation of what is available in following
 - [Urban Spatial](https://urbanspatial.github.io/classifying_satellite_imagery_in_R/)
 
 
-**That said, lets get started!!!**
+## **That said, lets get started!!!**
 
-I divided the workflow of this tutorial into four main steps:
+In a few words, my goal here is to use a drone image I took and make a **model able to identify what is Bare Soil, Grass, and Trees** on it.
 
-**1.** Getting the data ready
+I broke down the workflow of this tutorial into six main steps, along with some intermediate ones. This step-by-step approach really helped me grasp how the classification process works.
 
-**2.** Training the model
+## **1.** Installing and loading the packages;
 
-**3.** Evaluating the model
+## **2.** Getting the data ready:
+### **2.1 Loading the datasets**
+### **2.2. Checking up the Coordinate Reference System**
+### **2.3. Checking up the data information and structure**
+### **2.4. Cropping the raster image**
+### **2.5. Renaming and Selecting the Bands**
+### **2.6. Visualizing the Raster and the Polygons**
 
-**4.** Classifying the image
+## **3.** Training the model:
 
-**5.** Exploring the results
+## **4.** Evaluating the model:
+
+## **5.** Classifying the image:
+
+## **6.** Exploring the results:
 
 
-If you want to follow and try each step described here by yourself please download the data [HERE](https://github.com/souzayuri/souzayuri.github.io/tree/main/_posts/2025-01-05-random_forest_sup_classific_r)
+If you want to follow and try each step described here by yourself please download the data. [HERE](https://github.com/souzayuri/souzayuri.github.io/tree/main/_posts/2025-01-05-random_forest_sup_classific_r).
+If you want to 
 
 
+### **Hands to Work**
 
-The first thing we are gonna do is to load the required packages.
-We will use *raster* and *terra* to deal with raster data, *sf* for spatial vectors data, *tidyverse* for tabulate date and visualization, *caret* for random forest, and *mapview* along with *leaflet* for data viz.
+To get started, the very first step is to load the necessary packages (assuming you already have R installed on your machine). We'll utilize **raster** and **terra** for handling raster data, **sf** for managing spatial data like points and polygons, and **tidyverse** for data tabulation and visualization. Additionally, we'll rely on **caret** for implementing random forest methods, and use **mapview** along with **leaflet** to plot and visualize both the polygons and raster images. While these are the primary packages we'll need, I'll also incorporate some others to further explore the results of our image classification.
 
+
+## **1.** Installing and loading the packages
+
+Begin by installing and loading the necessary packages, along with the additional ones you will need. I prefer a setup this syntax that first checks if a package is already installed; if it isn't, it installs the package and then loads it afterward.
 
 ```{r packages, size = "tiny", include=TRUE}
 
@@ -89,10 +104,21 @@ if (!require("plotly")) install.packages("plotly")
 
 
 ```
+## **2. Getting the data ready**
 
-Now, lets load our raster data and shapefile containing a few features delimited for use as training data in the random forest model.
+### **2.1 Loading the datasets**
 
-```{r loading and reading data, size = "small", include=TRUE}
+Let's load all the files and information we will need later on:
+
+- **woody_savanna.tif**: this is a drone image that I took during my master's. It has 6 stacked bands: Blue, Green, Red, Red Edge, Near Infrared, and a Mask in this respective order. The mask band represents pixels that could not be identified during the image compilation (to make this image, I needed to use Agisoft Metashape).
+
+- **sampled_area.shp**: this is a polygon shapefile that we will use to clip the image and restrict it to a area of 100m x 100m (therefore removing the edges of the image).
+
+- **train_features.shp**: this file contains the features we will use to train our Random Forest model. It contains three classes: Bare Soil, Grass, and Trees.
+
+In this step we load the files and make sure to rename their classes using a standard nomenclature.
+
+```{r loading and reading the files, size = "small", include=TRUE}
 
 raw_raster <- terra::rast("woody_savanna.tif") |> 
   terra::aggregate(fact=2) # original pixel size = 10.8cm, new pixel size 21.6cm (old * 2)
@@ -108,6 +134,7 @@ plot(sampled_area)
 train_features <- sf::st_read("train_features.shp")
 train_features
 
+# renaming their classes accordingly to keep it consistent across upcoming analyses.
 train_features_clnd <- sf::st_read("train_features.shp") |> 
   dplyr::rename(OBJECTID = "Classcode",
                 Class = "Classname") |> 
@@ -118,9 +145,15 @@ train_features_clnd <- sf::st_read("train_features.shp") |>
 
 train_features_clnd
 plot(train_features_clnd)
+```
 
+### **2.2. Checking up the Coordinate Reference System**
 
-# Compare CRS
+We also check their CRS (coordinate reference system) and ensure they all have the same coordinate properties.
+
+```{r checking up the CRS, size = "small", include=TRUE}
+
+# Compare CRS, if they are different make them equal
 if (terra::crs(raw_raster) == terra::crs(train_features_clnd)) {
   print("CRS are identical!")
 } else {
@@ -130,7 +163,7 @@ if (terra::crs(raw_raster) == terra::crs(train_features_clnd)) {
 }
 
 
-# Compare CRS
+# Compare CRS again to ensure they above function worked.
 if (terra::crs(raw_raster) == terra::crs(train_features_clnd)) {
   print("CRS are identical!")
 } else {
@@ -138,20 +171,27 @@ if (terra::crs(raw_raster) == terra::crs(train_features_clnd)) {
   # Reproject train_features to match raw_raster
   train_features_clnd <- sf::st_transform(train_features_clnd, crs = terra::crs(raw_raster))
 }
-
 
 
 ```
-```{r data structure, size = "small", include=TRUE}
+
+### **2.3. Checking up the data information and structure**
+
+Let's check the training data and the number of features, which has a total of 46. 
+Here we can see that every training class has 15 features/polygons (grass has 16 because I added one more by mistake).
+
+```{r checking up the data, size = "small", include=TRUE}
 glimpse(train_features_clnd)
 summary(train_features_clnd)
 
 ```
 
+### **2.4. Cropping the raster image**
 
-Now, lets crop the raster and check projection
-
-```{r cropping data, size = "small", include=TRUE}
+Now that we have standardized the data, we will crop the raster image to the 100m x 100m grid limit. 
+We also want to check the CRS and make sure it is correct.
+ 
+```{r cropping the raster image, size = "small", include=TRUE}
 
 cropped_raster <- terra::crop(raw_raster, sampled_area)
 cropped_raster
@@ -169,24 +209,26 @@ if (terra::crs(raw_raster) == terra::crs(train_features_clnd)) {
 
 
 ```
-Now, lets rename our band composition
+### **2.5. Renaming and Selecting the Bands**
+
+So far, we have ensured the consistency of the image coordinates and defined the grid area we want to work on.
+Now, let's rename the bands according to their respective spectral signatures. This will help us later identify which band is which.
+In this step, I also removed the band MASK by only selecting the bands of interest according to their position in the bands list (1 to 5).
 
 ```{r defining band names, size = "small", include=TRUE}
 
 names(cropped_raster) <- c("Blue","Green","Red","RE","NIR","MASK")
 plot(cropped_raster)
 
-```
-Lets remove the MASK band as we will not use it
-
-```{r setup, selecting bands, size = "small", include=TRUE}
 cropped_raster_bands <- cropped_raster[[1:5]]
 plot(cropped_raster_bands)
 
 ```
-Lets make a RGB band compostion and visualize it in an interactive map with viewmap
+### **2.6. Visualizing the Raster and the Polygons**
 
-```{r visualizing data, echo = TRUE, include=TRUE}
+Now that we have the raster with five bands and the polygons ready for training the model, let's visualize our data. We'll create a natural color composition. To do this we need to inform the position of the RGB bands of the raster image (that is why naming it before hand was important) and overlay it with each class represented by the polygons. For visualization, we will use mapview() because it's interactive (just because we want some cool!!!).
+
+```{r visualizing the raster and the polygons, echo = TRUE, include=TRUE}
 
 train_class_colors <- unique(train_features_clnd$Class) |> 
   as.data.frame() |>
@@ -209,6 +251,8 @@ mapview::viewRGB(brick(cropped_raster_bands[[1:3]]),
 
 
 ```
+
+## **3.** Training the model:
 
 Now that we have checked and named the raster bands and visualized the raster overlapped with the features that will be used for training and testing the RF model, lets do an additional raster calculation to improve the model quality in identifying features. In this step we will create a map containing the calculations of the NDVI, EVI, and SAVI index using the band composition of our raster image.
 

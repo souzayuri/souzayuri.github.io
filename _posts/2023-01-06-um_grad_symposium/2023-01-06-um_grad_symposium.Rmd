@@ -16,7 +16,9 @@ output:
 
 This poster is a draft of what I want to approach and investigate during my Ph.D. I made this presentation for the University of Miami Graduate Student Symposium 2023, which awarded me for presenting the best poster at this symposium. 
 
+# **Abstract**
 ## **Abstract**
+### **Abstract**
 
 Campos de Murundus, or earthmounds, are discrete mounds surrounded by grass common throughout the Brazilian Savanna. Such sites favor colonization by plants and by termites, which play a significant role in ecosystem dynamics and maintenance through organic matter decomposition and gas fluxes. I aim to address how Campos de Murundus drives ecosystem dynamics in a spatial gradient. For this, we will perform a literature review to understand the role of such islands worldwide, and we will conduct fieldwork and data collection in the Brazilian Savanna Cerrado, focusing on the Campos de Murundus islands. We hypothesize the existence of a gradient of termite diversity, soil nutrient enrichment, plant functional composition, and gas fluxes increasing from an open grass field of the Savanna to the Murundus.
 
