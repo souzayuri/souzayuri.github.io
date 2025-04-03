@@ -49,27 +49,29 @@ For the record, this tutorial is a compilation of what is available in following
 
 ## **That said, lets get started!!!**
 
-In a few words, my goal here is to use a drone image I took and make a **model able to identify what is Bare Soil, Grass, and Trees** on it.
+In a few words, my goal here is to use a drone optical imagery I took during my fieldwork in Brazil and make a **model able to identify what is Bare Soil, Grass, and Trees** on it. This image was taken in *Chapada Dos Veadeiros National Park*, Brazil.
 
-I broke down the workflow of this tutorial into six main steps, along with some intermediate ones. This step-by-step approach really helped me grasp how the classification process works.
+I broke down the workflow of this tutorial into six main steps, along with some intermediate ones, a #BONUS . This step-by-step approach really helped me grasp how the classification process works.
 
-## **1.** Installing and loading the packages;
+## [1. Installing and Loading the Packages](#section1)
 
-## **2.** Getting the data ready:
-### **2.1 Loading the datasets**
-### **2.2. Checking up the Coordinate Reference System**
-### **2.3. Checking up the data information and structure**
-### **2.4. Cropping the raster image**
-### **2.5. Renaming and Selecting the Bands**
-### **2.6. Visualizing the Raster and the Polygons**
+## [2. Getting the Data Ready Getting the Data Ready](#section2)
+### [2.1.](#section2-1) Loading the Datasets
+### [2.2.](#section2-2) Checking up the Coordinate Reference System
+### [2.3.](#section2-3) Checking up the Data Information and Structure
+### [2.4.](#section2-4) Cropping the Raster Image
+### [2.5.](#section2-5) Renaming and Selecting the Bands
+### [2.6.](#section2-6) Visualizing the Raster and Polygons
 
-## **3.** Training the model:
+## [3. Training the Model](#section3)
+### [3.1.](#section3-1) Creating Vegetation Indexes
+## [4. Evaluating the Model](#section4)
 
-## **4.** Evaluating the model:
+## [5. Classifying the Image](#section5)
 
-## **5.** Classifying the image:
+## [6. Exploring the Results](#section6)
 
-## **6.** Exploring the results:
+## [7. BONUS](#section7)
 
 
 If you want to follow and try each step described here by yourself please download the data. [HERE](https://github.com/souzayuri/souzayuri.github.io/tree/main/_posts/2025-01-05-random_forest_sup_classific_r).
@@ -81,7 +83,7 @@ If you want to
 To get started, the very first step is to load the necessary packages (assuming you already have R installed on your machine). We'll utilize **raster** and **terra** for handling raster data, **sf** for managing spatial data like points and polygons, and **tidyverse** for data tabulation and visualization. Additionally, we'll rely on **caret** for implementing random forest methods, and use **mapview** along with **leaflet** to plot and visualize both the polygons and raster images. While these are the primary packages we'll need, I'll also incorporate some others to further explore the results of our image classification.
 
 
-## **1.** Installing and loading the packages
+## 1. Installing and Loading the Packages{#section1}
 
 Begin by installing and loading the necessary packages, along with the additional ones you will need. I prefer a setup this syntax that first checks if a package is already installed; if it isn't, it installs the package and then loads it afterward.
 
@@ -104,9 +106,9 @@ if (!require("plotly")) install.packages("plotly")
 
 
 ```
-## **2. Getting the data ready**
+## 2. Getting the Data Ready{#section2}
 
-### **2.1 Loading the datasets**
+### **2.1 Loading the datasets**{#section2-1}
 
 Let's load all the files and information we will need later on:
 
@@ -147,7 +149,7 @@ train_features_clnd
 plot(train_features_clnd)
 ```
 
-### **2.2. Checking up the Coordinate Reference System**
+### **2.2. Checking up the Coordinate Reference System**{#section2-2}
 
 We also check their CRS (coordinate reference system) and ensure they all have the same coordinate properties.
 
@@ -175,7 +177,7 @@ if (terra::crs(raw_raster) == terra::crs(train_features_clnd)) {
 
 ```
 
-### **2.3. Checking up the data information and structure**
+### **2.3. Checking up the data information and structure**{#section2-3}
 
 Let's check the training data and the number of features, which has a total of 46. 
 Here we can see that every training class has 15 features/polygons (grass has 16 because I added one more by mistake).
@@ -186,10 +188,10 @@ summary(train_features_clnd)
 
 ```
 
-### **2.4. Cropping the raster image**
+### **2.4. Cropping the raster image**{#section2-4}
 
 Now that we have standardized the data, we will crop the raster image to the 100m x 100m grid limit. 
-We also want to check the CRS and make sure it is correct.
+We also want to check the CRS and make sure it is correct, and plot each of these bands side-by-side.
  
 ```{r cropping the raster image, size = "small", include=TRUE}
 
@@ -209,7 +211,7 @@ if (terra::crs(raw_raster) == terra::crs(train_features_clnd)) {
 
 
 ```
-### **2.5. Renaming and Selecting the Bands**
+### **2.5. Renaming and Selecting the Bands**{#section2-5}
 
 So far, we have ensured the consistency of the image coordinates and defined the grid area we want to work on.
 Now, let's rename the bands according to their respective spectral signatures. This will help us later identify which band is which.
@@ -224,7 +226,7 @@ cropped_raster_bands <- cropped_raster[[1:5]]
 plot(cropped_raster_bands)
 
 ```
-### **2.6. Visualizing the Raster and the Polygons**
+### **2.6. Visualizing the Raster and Polygons**{#section2-6}
 
 Now that we have the raster with five bands and the polygons ready for training the model, let's visualize our data. We'll create a natural color composition. To do this we need to inform the position of the RGB bands of the raster image (that is why naming it before hand was important) and overlay it with each class represented by the polygons. For visualization, we will use mapview() because it's interactive (just because we want some cool!!!).
 
@@ -252,18 +254,41 @@ mapview::viewRGB(brick(cropped_raster_bands[[1:3]]),
 
 ```
 
-## **3.** Training the model:
+## 3. Training the Model{#section3}
 
-Now that we have checked and named the raster bands and visualized the raster overlapped with the features that will be used for training and testing the RF model, lets do an additional raster calculation to improve the model quality in identifying features. In this step we will create a map containing the calculations of the NDVI, EVI, and SAVI index using the band composition of our raster image.
+One cool aspect of using optical imagery rasters with various bands is the ability to rearrange these bands to create new, informative images. To provide some context, the drone imagery we're working with includes natural color RGB bands, which are part of the visible spectrum for humans, along with the Red Edge and Near-Infrared bands, which lie outside this spectrum. The latter two bands are particularly useful for highlighting vegetation characteristics, as plants reflect a significant amount of infrared light. This unique property makes infrared imagery an invaluable tool for analyzing vegetation, as it offers deeper insights into the state, health, vigor, and other attributes of plants that natural color imagery simply cannot reveal.
 
-```{r visualizing datab, echo = TRUE, include=TRUE}
+Now that we have our raster image and training features prepared, let's move on to the next step: using this raster image and bands to create various vegetation indexes. They will be stacked as bands and will be used to train the model, using the mapped polygons, and to predict the vegetation classes in the later steps of the classification. This process will improve the classification of the image by pinpointing pixel combinations that are more accurately representative of the specific vegetation characteristics we aim to map.
+
+
+### **3.1. Creating Vegetation Indexes**{#section3-1}
+
+When conducting image classification, it’s crucial to provide clear information that highlights the distinguishing features you’re mapping. In this section, we will focus on creating three widely used vegetation indexes in remote sensing: the NDVI (Normalized Difference Vegetation Index), the EVI (Enhanced Vegetation Index), and the SAVI (Soil Adjusted Vegetation Index). Each of these indexes interprets vegetation in unique ways, and we will utilize them alongside the spectral bands from the drone imagery to classify the image effectively.
+
+This is a straightforward process that primarily involves utilizing the Red, Near Infrared, and Blue bands, along with a few predefined parameters. Each index has its own arithmetic equation, and we can identify these bands based on their positions within the raster. We will then plot these indexes side-by-side.
+
+Check out below a table summarizing the similarity and differences among these indexes.
+
+| Feature        | **NDVI** (Normalized Difference Vegetation Index) | **EVI** (Enhanced Vegetation Index) | **SAVI** (Soil Adjusted Vegetation Index) |
+|----------------|----------------------------------------------------|--------------------------------------|---------------------------------------------|
+| **Formula**     | (NIR - Red) / (NIR + Red)                          | 2.5 × (NIR - Red) / (NIR + C1 × Red - 7.5 × Blue + 1) | ((NIR - Red) / (NIR + Red + 0.5)) × (1 + 0.5) |
+| **Bands Used**  | NIR, Red                                           | NIR, Red, Blue                       | NIR, Red                                     |
+| **Purpose**     | General greenness/vegetation presence             | Improves sensitivity in high biomass areas | Adjusts for soil background noise       |
+| **Advantages**  | Simple, widely used                               | Corrects for atmospheric & canopy background effects | Better for areas with sparse vegetation or exposed soil |
+| **Limitations** | Sensitive to soil brightness and atmospheric conditions | More complex, needs Blue band      | Requires adjustment factor (L) based on soil type |
+| **Best Use Cases** | Moderate to dense vegetation                  | Dense forests, tropical areas       | Arid and semi-arid areas, sparse vegetation |
+
+
+
+
+```{r creating vegetation indexes, echo = TRUE, include=TRUE}
 
 cropped_raster_bands_ndvi <- (cropped_raster_bands[[5]] - cropped_raster_bands[[3]]) / 
   (cropped_raster_bands[[5]] + cropped_raster_bands[[3]])
 cropped_raster_bands_ndvi
 
 cropped_raster_bands_evi <- 2.5 * ((cropped_raster_bands[[5]] - cropped_raster_bands[[3]]) /
-    (cropped_raster_bands[[5]] + 6 * cropped_raster_bands[[3]] - 7.5 * cropped_raster_bands[[1]] + 1))
+    (cropped_raster_bands[[5]] + (6 * cropped_raster_bands[[3]]) - (7.5 * cropped_raster_bands[[1]]) + 1))
 cropped_raster_bands_evi
 
 cropped_raster_bands_savi <- ((cropped_raster_bands[[5]] - cropped_raster_bands[[3]]) /
