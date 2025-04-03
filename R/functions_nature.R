@@ -4,11 +4,9 @@ if (!require("jsonlite")) install.packages("jsonlite")
 if (!require("magick")) install.packages("magick")
 if (!require("pak")) install.packages("pak")
 if (!require("tidytuesdayR")) pak::pak("dslc-io/tidytuesdayR")
-
 ##########
 ## Create the layout for the "Gallery" section ##
 ##########
-
 # First, check and remove any existing thumbnail files
 remove_existing_thumbnails <- function() {
   existing_files <- list.files("gallery/nature")
@@ -19,7 +17,6 @@ remove_existing_thumbnails <- function() {
     file.remove(file.path("gallery/nature", thumbnails))
   }
 }
-
 resize_image <- function(image) {
   # Skip if the image is already a thumbnail
   if (grepl("^thumb-", image)) {
@@ -30,15 +27,12 @@ resize_image <- function(image) {
   imFile_resized <- magick::image_resize(imFile, "10%")
   magick::image_write(imFile_resized, here::here(paste0("gallery/nature/thumb-", image)))
 }
-
 # Remove existing thumbnails before creating new ones
 remove_existing_thumbnails()
-
 # Get only non-thumbnail images and create new thumbnails
 list_png <- list.files("gallery/nature")
 list_png_no_thumbs <- grep("^thumb-", list_png, value = TRUE, invert = TRUE)
 lapply(list_png_no_thumbs, resize_image)
-
 format_bird_name <- function(filename) {
   # Remove file extension
   name_without_ext <- tools::file_path_sans_ext(filename)
@@ -84,7 +78,42 @@ make_gallery_layout <- function() {
   # Sort images alphabetically by filename (A to Z)
   image_pairs <- image_pairs[order(image_pairs$images_full_size, decreasing = FALSE), ]
   
+  # CSS for hover effect - will be included in the head of the document
+  css <- tags$style(HTML("
+    .thumb-container {
+      position: relative;
+      display: inline-block;
+      margin: 5px;
+      text-align: center;
+      width: 160px;
+    }
+    
+    .magnifier-icon {
+      position: absolute;
+      bottom: 25px;
+      right: 5px;
+      background-color: rgba(220,220,220,0.5);
+      border-radius: 50%;
+      padding: 3px;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .thumb-container:hover .magnifier-icon {
+      opacity: 1;
+    }
+  "))
+  
   tagList(
+    # Add the CSS styles
+    css,
+    
+    # Generate the gallery items
     apply(image_pairs, 1, function(x) {
       # Get original filename for display
       original_name <- x[["images_full_size"]]
@@ -94,10 +123,15 @@ make_gallery_layout <- function() {
       
       tags$a(
         href = paste0("gallery/nature/", x[["images_full_size"]]),
-        style = "display: inline-block; margin: 5px; text-align: center; width: 160px;", 
+        class = "thumb-container",
         tags$img(
           src = paste0("gallery/nature/", x[["images_thumb"]]),
           style = "width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;"
+        ),
+        # Add magnifier icon that will only show on hover
+        tags$div(
+          class = "magnifier-icon",
+          HTML('<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>')
         ),
         tags$div(
           HTML(formatted_name),

@@ -2838,41 +2838,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!-- lightgallery plugins -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lg-fullscreen/1.2.1/lg-fullscreen.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lg-thumbnail/1.2.1/lg-thumbnail.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lg-zoom/1.3.0/lg-zoom.min.js"></script>
-<!-- Add Font Awesome for the magnifier icon -->
-<p><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" /></p>
-<!-- Add custom CSS for magnifier -->
-<style>
-.img-container {
-  position: relative;
-  display: inline-block;
-}
-
-.magnifier-icon {
-  position: absolute;
-  bottom: 5px;
-  right: 5px;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s;
-  cursor: pointer;
-}
-
-.img-container:hover .magnifier-icon {
-  opacity: 1;
-}
-
-.lg-zoomed .lg-image {
-  cursor: move !important;
-}
-</style>
 </head>
 <div class="layout-chunk" data-layout="l-body">
 <style type="text/css">
@@ -2885,170 +2850,169 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="row" id="lightgallery">
-<a href="gallery/nature/Barred Owl_ (Strix varia).png" data-src="gallery/nature/Barred Owl_ (Strix varia).png" data-sub-html="&lt;h4&gt;Barred Owl  (Strix Varia)&lt;/h4&gt;" class="gallery-item" data-exthumbimage="gallery/nature/thumb-Barred Owl_ (Strix varia).png" style="display: inline-block; margin: 5px; text-align: center; width: 160px;">
-<img src="gallery/nature/thumb-Barred%20Owl_%20(Strix%20varia).png" alt="Barred Owl  (Strix Varia)" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;" class="gallery-thumbnail"/>
-<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Barred Owl  (Strix Varia)</div>
+<style>
+    .thumb-container {
+      position: relative;
+      display: inline-block;
+      margin: 5px;
+      text-align: center;
+      width: 160px;
+    }
+    
+    .magnifier-icon {
+      position: absolute;
+      bottom: 25px;
+      right: 5px;
+      background-color: rgba(220,220,220,0.5);
+      border-radius: 50%;
+      padding: 3px;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .thumb-container:hover .magnifier-icon {
+      opacity: 1;
+    }
+  </style>
+<a href="gallery/nature/Barred Owl_ (Strix varia).png" class="thumb-container">
+<img src="gallery/nature/thumb-Barred%20Owl_%20(Strix%20varia).png" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;"/>
+<div class="magnifier-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
+<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Barred Owl<br style='margin: 0; line-height: 1;'>(Strix varia)</div>
 </a>
-<a href="gallery/nature/Beija-flor-tesoura_Swallow-tailed Hummingbird_ (Eupetomena macroura).png" data-src="gallery/nature/Beija-flor-tesoura_Swallow-tailed Hummingbird_ (Eupetomena macroura).png" data-sub-html="&lt;h4&gt;Beija Flor Tesoura Swallow Tailed Hummingbird  (Eupetomena Macroura)&lt;/h4&gt;" class="gallery-item" data-exthumbimage="gallery/nature/thumb-Beija-flor-tesoura_Swallow-tailed Hummingbird_ (Eupetomena macroura).png" style="display: inline-block; margin: 5px; text-align: center; width: 160px;">
-<img src="gallery/nature/thumb-Beija-flor-tesoura_Swallow-tailed%20Hummingbird_%20(Eupetomena%20macroura).png" alt="Beija Flor Tesoura Swallow Tailed Hummingbird  (Eupetomena Macroura)" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;" class="gallery-thumbnail"/>
-<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Beija Flor Tesoura Swallow Tailed Hummingbird  (Eupetomena Macroura)</div>
+<a href="gallery/nature/Beija-flor-tesoura_Swallow-tailed Hummingbird_ (Eupetomena macroura).png" class="thumb-container">
+<img src="gallery/nature/thumb-Beija-flor-tesoura_Swallow-tailed%20Hummingbird_%20(Eupetomena%20macroura).png" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;"/>
+<div class="magnifier-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
+<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Beija-flor-tesoura<br style='margin: 0; line-height: 1;'>Swallow-tailed Hummingbird<br style='margin: 0; line-height: 1;'>(Eupetomena macroura)</div>
 </a>
-<a href="gallery/nature/Bico-de-veludo_Cinnamon tanager_ (Schistochlamys ruficapillus).JPG" data-src="gallery/nature/Bico-de-veludo_Cinnamon tanager_ (Schistochlamys ruficapillus).JPG" data-sub-html="&lt;h4&gt;Bico De Veludo Cinnamon Tanager  (Schistochlamys Ruficapillus)&lt;/h4&gt;" class="gallery-item" data-exthumbimage="gallery/nature/thumb-Bico-de-veludo_Cinnamon tanager_ (Schistochlamys ruficapillus).JPG" style="display: inline-block; margin: 5px; text-align: center; width: 160px;">
-<img src="gallery/nature/thumb-Bico-de-veludo_Cinnamon%20tanager_%20(Schistochlamys%20ruficapillus).JPG" alt="Bico De Veludo Cinnamon Tanager  (Schistochlamys Ruficapillus)" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;" class="gallery-thumbnail"/>
-<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Bico De Veludo Cinnamon Tanager  (Schistochlamys Ruficapillus)</div>
+<a href="gallery/nature/Bico-de-veludo_Cinnamon tanager_ (Schistochlamys ruficapillus).JPG" class="thumb-container">
+<img src="gallery/nature/thumb-Bico-de-veludo_Cinnamon%20tanager_%20(Schistochlamys%20ruficapillus).JPG" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;"/>
+<div class="magnifier-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
+<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Bico-de-veludo<br style='margin: 0; line-height: 1;'>Cinnamon tanager<br style='margin: 0; line-height: 1;'>(Schistochlamys ruficapillus)</div>
 </a>
-<a href="gallery/nature/Blue-gray gnatcatcher_ (Polioptila caerulea).png" data-src="gallery/nature/Blue-gray gnatcatcher_ (Polioptila caerulea).png" data-sub-html="&lt;h4&gt;Blue Gray Gnatcatcher  (Polioptila Caerulea)&lt;/h4&gt;" class="gallery-item" data-exthumbimage="gallery/nature/thumb-Blue-gray gnatcatcher_ (Polioptila caerulea).png" style="display: inline-block; margin: 5px; text-align: center; width: 160px;">
-<img src="gallery/nature/thumb-Blue-gray%20gnatcatcher_%20(Polioptila%20caerulea).png" alt="Blue Gray Gnatcatcher  (Polioptila Caerulea)" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;" class="gallery-thumbnail"/>
-<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Blue Gray Gnatcatcher  (Polioptila Caerulea)</div>
+<a href="gallery/nature/Blue-gray gnatcatcher_ (Polioptila caerulea).png" class="thumb-container">
+<img src="gallery/nature/thumb-Blue-gray%20gnatcatcher_%20(Polioptila%20caerulea).png" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;"/>
+<div class="magnifier-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
+<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Blue-gray gnatcatcher<br style='margin: 0; line-height: 1;'>(Polioptila caerulea)</div>
 </a>
-<a href="gallery/nature/Caburé-Miudinho_Least Pygmy-Owl_ (Glaucidium minutissimum).png" data-src="gallery/nature/Caburé-Miudinho_Least Pygmy-Owl_ (Glaucidium minutissimum).png" data-sub-html="&lt;h4&gt;Caburé Miudinho Least Pygmy Owl  (Glaucidium Minutissimum)&lt;/h4&gt;" class="gallery-item" data-exthumbimage="gallery/nature/thumb-Caburé-Miudinho_Least Pygmy-Owl_ (Glaucidium minutissimum).png" style="display: inline-block; margin: 5px; text-align: center; width: 160px;">
-<img src="gallery/nature/thumb-Cabur%C3%A9-Miudinho_Least%20Pygmy-Owl_%20(Glaucidium%20minutissimum).png" alt="Caburé Miudinho Least Pygmy Owl  (Glaucidium Minutissimum)" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;" class="gallery-thumbnail"/>
-<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Caburé Miudinho Least Pygmy Owl  (Glaucidium Minutissimum)</div>
+<a href="gallery/nature/Caburé-Miudinho_Least Pygmy-Owl_ (Glaucidium minutissimum).png" class="thumb-container">
+<img src="gallery/nature/thumb-Cabur%C3%A9-Miudinho_Least%20Pygmy-Owl_%20(Glaucidium%20minutissimum).png" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;"/>
+<div class="magnifier-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
+<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Caburé-Miudinho<br style='margin: 0; line-height: 1;'>Least Pygmy-Owl<br style='margin: 0; line-height: 1;'>(Glaucidium minutissimum)</div>
 </a>
-<a href="gallery/nature/Canário-do-campo_Wedge-tailed Grass-Finch_ (Emberizoides herbicola).png" data-src="gallery/nature/Canário-do-campo_Wedge-tailed Grass-Finch_ (Emberizoides herbicola).png" data-sub-html="&lt;h4&gt;Canário Do Campo Wedge Tailed Grass Finch  (Emberizoides Herbicola)&lt;/h4&gt;" class="gallery-item" data-exthumbimage="gallery/nature/thumb-Canário-do-campo_Wedge-tailed Grass-Finch_ (Emberizoides herbicola).png" style="display: inline-block; margin: 5px; text-align: center; width: 160px;">
-<img src="gallery/nature/thumb-Can%C3%A1rio-do-campo_Wedge-tailed%20Grass-Finch_%20(Emberizoides%20herbicola).png" alt="Canário Do Campo Wedge Tailed Grass Finch  (Emberizoides Herbicola)" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;" class="gallery-thumbnail"/>
-<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Canário Do Campo Wedge Tailed Grass Finch  (Emberizoides Herbicola)</div>
+<a href="gallery/nature/Canário-do-campo_Wedge-tailed Grass-Finch_ (Emberizoides herbicola).png" class="thumb-container">
+<img src="gallery/nature/thumb-Can%C3%A1rio-do-campo_Wedge-tailed%20Grass-Finch_%20(Emberizoides%20herbicola).png" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;"/>
+<div class="magnifier-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
+<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Canário-do-campo<br style='margin: 0; line-height: 1;'>Wedge-tailed Grass-Finch<br style='margin: 0; line-height: 1;'>(Emberizoides herbicola)</div>
 </a>
-<a href="gallery/nature/Colhereiro_Roseate Spoonbill_ (Platalea ajaja).png" data-src="gallery/nature/Colhereiro_Roseate Spoonbill_ (Platalea ajaja).png" data-sub-html="&lt;h4&gt;Colhereiro Roseate Spoonbill  (Platalea Ajaja)&lt;/h4&gt;" class="gallery-item" data-exthumbimage="gallery/nature/thumb-Colhereiro_Roseate Spoonbill_ (Platalea ajaja).png" style="display: inline-block; margin: 5px; text-align: center; width: 160px;">
-<img src="gallery/nature/thumb-Colhereiro_Roseate%20Spoonbill_%20(Platalea%20ajaja).png" alt="Colhereiro Roseate Spoonbill  (Platalea Ajaja)" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;" class="gallery-thumbnail"/>
-<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Colhereiro Roseate Spoonbill  (Platalea Ajaja)</div>
+<a href="gallery/nature/Colhereiro_Roseate Spoonbill_ (Platalea ajaja).png" class="thumb-container">
+<img src="gallery/nature/thumb-Colhereiro_Roseate%20Spoonbill_%20(Platalea%20ajaja).png" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;"/>
+<div class="magnifier-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
+<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Colhereiro<br style='margin: 0; line-height: 1;'>Roseate Spoonbill<br style='margin: 0; line-height: 1;'>(Platalea ajaja)</div>
 </a>
-<a href="gallery/nature/Coruja-buraqueira_Burrowing Owl_ (Athene cunicularia).png" data-src="gallery/nature/Coruja-buraqueira_Burrowing Owl_ (Athene cunicularia).png" data-sub-html="&lt;h4&gt;Coruja Buraqueira Burrowing Owl  (Athene Cunicularia)&lt;/h4&gt;" class="gallery-item" data-exthumbimage="gallery/nature/thumb-Coruja-buraqueira_Burrowing Owl_ (Athene cunicularia).png" style="display: inline-block; margin: 5px; text-align: center; width: 160px;">
-<img src="gallery/nature/thumb-Coruja-buraqueira_Burrowing%20Owl_%20(Athene%20cunicularia).png" alt="Coruja Buraqueira Burrowing Owl  (Athene Cunicularia)" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;" class="gallery-thumbnail"/>
-<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Coruja Buraqueira Burrowing Owl  (Athene Cunicularia)</div>
+<a href="gallery/nature/Coruja-buraqueira_Burrowing Owl_ (Athene cunicularia).png" class="thumb-container">
+<img src="gallery/nature/thumb-Coruja-buraqueira_Burrowing%20Owl_%20(Athene%20cunicularia).png" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;"/>
+<div class="magnifier-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
+<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Coruja-buraqueira<br style='margin: 0; line-height: 1;'>Burrowing Owl<br style='margin: 0; line-height: 1;'>(Athene cunicularia)</div>
 </a>
-<a href="gallery/nature/Corujinha-do-mato_Tropical Screech-Owl_ (Megascops choliba).JPG" data-src="gallery/nature/Corujinha-do-mato_Tropical Screech-Owl_ (Megascops choliba).JPG" data-sub-html="&lt;h4&gt;Corujinha Do Mato Tropical Screech Owl  (Megascops Choliba)&lt;/h4&gt;" class="gallery-item" data-exthumbimage="gallery/nature/thumb-Corujinha-do-mato_Tropical Screech-Owl_ (Megascops choliba).JPG" style="display: inline-block; margin: 5px; text-align: center; width: 160px;">
-<img src="gallery/nature/thumb-Corujinha-do-mato_Tropical%20Screech-Owl_%20(Megascops%20choliba).JPG" alt="Corujinha Do Mato Tropical Screech Owl  (Megascops Choliba)" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;" class="gallery-thumbnail"/>
-<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Corujinha Do Mato Tropical Screech Owl  (Megascops Choliba)</div>
+<a href="gallery/nature/Corujinha-do-mato_Tropical Screech-Owl_ (Megascops choliba).JPG" class="thumb-container">
+<img src="gallery/nature/thumb-Corujinha-do-mato_Tropical%20Screech-Owl_%20(Megascops%20choliba).JPG" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;"/>
+<div class="magnifier-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
+<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Corujinha-do-mato<br style='margin: 0; line-height: 1;'>Tropical Screech-Owl<br style='margin: 0; line-height: 1;'>(Megascops choliba)</div>
 </a>
-<a href="gallery/nature/Fim-fim_Purple-throated Euphonia_ (Euphonia chlorotica).JPG" data-src="gallery/nature/Fim-fim_Purple-throated Euphonia_ (Euphonia chlorotica).JPG" data-sub-html="&lt;h4&gt;Fim Fim Purple Throated Euphonia  (Euphonia Chlorotica)&lt;/h4&gt;" class="gallery-item" data-exthumbimage="gallery/nature/thumb-Fim-fim_Purple-throated Euphonia_ (Euphonia chlorotica).JPG" style="display: inline-block; margin: 5px; text-align: center; width: 160px;">
-<img src="gallery/nature/thumb-Fim-fim_Purple-throated%20Euphonia_%20(Euphonia%20chlorotica).JPG" alt="Fim Fim Purple Throated Euphonia  (Euphonia Chlorotica)" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;" class="gallery-thumbnail"/>
-<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Fim Fim Purple Throated Euphonia  (Euphonia Chlorotica)</div>
+<a href="gallery/nature/Fim-fim_Purple-throated Euphonia_ (Euphonia chlorotica).JPG" class="thumb-container">
+<img src="gallery/nature/thumb-Fim-fim_Purple-throated%20Euphonia_%20(Euphonia%20chlorotica).JPG" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;"/>
+<div class="magnifier-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
+<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Fim-fim<br style='margin: 0; line-height: 1;'>Purple-throated Euphonia<br style='margin: 0; line-height: 1;'>(Euphonia chlorotica)</div>
 </a>
-<a href="gallery/nature/Florida Raccoon_ (Procyon lotor ssp. elucus).jpg" data-src="gallery/nature/Florida Raccoon_ (Procyon lotor ssp. elucus).jpg" data-sub-html="&lt;h4&gt;Florida Raccoon  (Procyon Lotor Ssp. Elucus)&lt;/h4&gt;" class="gallery-item" data-exthumbimage="gallery/nature/thumb-Florida Raccoon_ (Procyon lotor ssp. elucus).jpg" style="display: inline-block; margin: 5px; text-align: center; width: 160px;">
-<img src="gallery/nature/thumb-Florida%20Raccoon_%20(Procyon%20lotor%20ssp.%20elucus).jpg" alt="Florida Raccoon  (Procyon Lotor Ssp. Elucus)" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;" class="gallery-thumbnail"/>
-<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Florida Raccoon  (Procyon Lotor Ssp. Elucus)</div>
+<a href="gallery/nature/Florida Raccoon_ (Procyon lotor ssp. elucus).jpg" class="thumb-container">
+<img src="gallery/nature/thumb-Florida%20Raccoon_%20(Procyon%20lotor%20ssp.%20elucus).jpg" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;"/>
+<div class="magnifier-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
+<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Florida Raccoon<br style='margin: 0; line-height: 1;'>(Procyon lotor ssp. elucus)</div>
 </a>
-<a href="gallery/nature/Gavião-bombachinha_Rufous-thighed Kite_ (Harpagus diodon).JPG" data-src="gallery/nature/Gavião-bombachinha_Rufous-thighed Kite_ (Harpagus diodon).JPG" data-sub-html="&lt;h4&gt;Gavião Bombachinha Rufous Thighed Kite  (Harpagus Diodon)&lt;/h4&gt;" class="gallery-item" data-exthumbimage="gallery/nature/thumb-Gavião-bombachinha_Rufous-thighed Kite_ (Harpagus diodon).JPG" style="display: inline-block; margin: 5px; text-align: center; width: 160px;">
-<img src="gallery/nature/thumb-Gavi%C3%A3o-bombachinha_Rufous-thighed%20Kite_%20(Harpagus%20diodon).JPG" alt="Gavião Bombachinha Rufous Thighed Kite  (Harpagus Diodon)" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;" class="gallery-thumbnail"/>
-<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Gavião Bombachinha Rufous Thighed Kite  (Harpagus Diodon)</div>
+<a href="gallery/nature/Gavião-bombachinha_Rufous-thighed Kite_ (Harpagus diodon).JPG" class="thumb-container">
+<img src="gallery/nature/thumb-Gavi%C3%A3o-bombachinha_Rufous-thighed%20Kite_%20(Harpagus%20diodon).JPG" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;"/>
+<div class="magnifier-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
+<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Gavião-bombachinha<br style='margin: 0; line-height: 1;'>Rufous-thighed Kite<br style='margin: 0; line-height: 1;'>(Harpagus diodon)</div>
 </a>
-<a href="gallery/nature/Gavião-caboclo_Savanna Hawk_ (Heterospizias meridionalis).jpg" data-src="gallery/nature/Gavião-caboclo_Savanna Hawk_ (Heterospizias meridionalis).jpg" data-sub-html="&lt;h4&gt;Gavião Caboclo Savanna Hawk  (Heterospizias Meridionalis)&lt;/h4&gt;" class="gallery-item" data-exthumbimage="gallery/nature/thumb-Gavião-caboclo_Savanna Hawk_ (Heterospizias meridionalis).jpg" style="display: inline-block; margin: 5px; text-align: center; width: 160px;">
-<img src="gallery/nature/thumb-Gavi%C3%A3o-caboclo_Savanna%20Hawk_%20(Heterospizias%20meridionalis).jpg" alt="Gavião Caboclo Savanna Hawk  (Heterospizias Meridionalis)" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;" class="gallery-thumbnail"/>
-<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Gavião Caboclo Savanna Hawk  (Heterospizias Meridionalis)</div>
+<a href="gallery/nature/Gavião-caboclo_Savanna Hawk_ (Heterospizias meridionalis).jpg" class="thumb-container">
+<img src="gallery/nature/thumb-Gavi%C3%A3o-caboclo_Savanna%20Hawk_%20(Heterospizias%20meridionalis).jpg" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;"/>
+<div class="magnifier-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
+<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Gavião-caboclo<br style='margin: 0; line-height: 1;'>Savanna Hawk<br style='margin: 0; line-height: 1;'>(Heterospizias meridionalis)</div>
 </a>
-<a href="gallery/nature/Jacuturu_Great Horned Owl_ (Bubo virginianus).JPG" data-src="gallery/nature/Jacuturu_Great Horned Owl_ (Bubo virginianus).JPG" data-sub-html="&lt;h4&gt;Jacuturu Great Horned Owl  (Bubo Virginianus)&lt;/h4&gt;" class="gallery-item" data-exthumbimage="gallery/nature/thumb-Jacuturu_Great Horned Owl_ (Bubo virginianus).JPG" style="display: inline-block; margin: 5px; text-align: center; width: 160px;">
-<img src="gallery/nature/thumb-Jacuturu_Great%20Horned%20Owl_%20(Bubo%20virginianus).JPG" alt="Jacuturu Great Horned Owl  (Bubo Virginianus)" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;" class="gallery-thumbnail"/>
-<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Jacuturu Great Horned Owl  (Bubo Virginianus)</div>
+<a href="gallery/nature/Jacuturu_Great Horned Owl_ (Bubo virginianus).JPG" class="thumb-container">
+<img src="gallery/nature/thumb-Jacuturu_Great%20Horned%20Owl_%20(Bubo%20virginianus).JPG" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;"/>
+<div class="magnifier-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
+<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Jacuturu<br style='margin: 0; line-height: 1;'>Great Horned Owl<br style='margin: 0; line-height: 1;'>(Bubo virginianus)</div>
 </a>
-<a href="gallery/nature/Jacuturu_Great Horned Owl_ (Bubo virginianus).png" data-src="gallery/nature/Jacuturu_Great Horned Owl_ (Bubo virginianus).png" data-sub-html="&lt;h4&gt;Jacuturu Great Horned Owl  (Bubo Virginianus)&lt;/h4&gt;" class="gallery-item" data-exthumbimage="gallery/nature/thumb-Jacuturu_Great Horned Owl_ (Bubo virginianus).png" style="display: inline-block; margin: 5px; text-align: center; width: 160px;">
-<img src="gallery/nature/thumb-Jacuturu_Great%20Horned%20Owl_%20(Bubo%20virginianus).png" alt="Jacuturu Great Horned Owl  (Bubo Virginianus)" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;" class="gallery-thumbnail"/>
-<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Jacuturu Great Horned Owl  (Bubo Virginianus)</div>
+<a href="gallery/nature/Jacuturu_Great Horned Owl_ (Bubo virginianus).png" class="thumb-container">
+<img src="gallery/nature/thumb-Jacuturu_Great%20Horned%20Owl_%20(Bubo%20virginianus).png" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;"/>
+<div class="magnifier-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
+<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Jacuturu<br style='margin: 0; line-height: 1;'>Great Horned Owl<br style='margin: 0; line-height: 1;'>(Bubo virginianus)</div>
 </a>
-<a href="gallery/nature/Mocho-diabo_Stygian Owl_ (Asio stygius).png" data-src="gallery/nature/Mocho-diabo_Stygian Owl_ (Asio stygius).png" data-sub-html="&lt;h4&gt;Mocho Diabo Stygian Owl  (Asio Stygius)&lt;/h4&gt;" class="gallery-item" data-exthumbimage="gallery/nature/thumb-Mocho-diabo_Stygian Owl_ (Asio stygius).png" style="display: inline-block; margin: 5px; text-align: center; width: 160px;">
-<img src="gallery/nature/thumb-Mocho-diabo_Stygian%20Owl_%20(Asio%20stygius).png" alt="Mocho Diabo Stygian Owl  (Asio Stygius)" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;" class="gallery-thumbnail"/>
-<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Mocho Diabo Stygian Owl  (Asio Stygius)</div>
+<a href="gallery/nature/Mocho-diabo_Stygian Owl_ (Asio stygius).png" class="thumb-container">
+<img src="gallery/nature/thumb-Mocho-diabo_Stygian%20Owl_%20(Asio%20stygius).png" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;"/>
+<div class="magnifier-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
+<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Mocho-diabo<br style='margin: 0; line-height: 1;'>Stygian Owl<br style='margin: 0; line-height: 1;'>(Asio stygius)</div>
 </a>
-<a href="gallery/nature/Mocho-dos-Banhados_Short-eared Owl_ (Asio_flammeus).png" data-src="gallery/nature/Mocho-dos-Banhados_Short-eared Owl_ (Asio_flammeus).png" data-sub-html="&lt;h4&gt;Mocho Dos Banhados Short Eared Owl  (Asio Flammeus)&lt;/h4&gt;" class="gallery-item" data-exthumbimage="gallery/nature/thumb-Mocho-dos-Banhados_Short-eared Owl_ (Asio_flammeus).png" style="display: inline-block; margin: 5px; text-align: center; width: 160px;">
-<img src="gallery/nature/thumb-Mocho-dos-Banhados_Short-eared%20Owl_%20(Asio_flammeus).png" alt="Mocho Dos Banhados Short Eared Owl  (Asio Flammeus)" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;" class="gallery-thumbnail"/>
-<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Mocho Dos Banhados Short Eared Owl  (Asio Flammeus)</div>
+<a href="gallery/nature/Mocho-dos-Banhados_Short-eared Owl_ (Asio_flammeus).png" class="thumb-container">
+<img src="gallery/nature/thumb-Mocho-dos-Banhados_Short-eared%20Owl_%20(Asio_flammeus).png" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;"/>
+<div class="magnifier-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
+<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Mocho-dos-Banhados<br style='margin: 0; line-height: 1;'>Short-eared Owl<br style='margin: 0; line-height: 1;'>(Asio flammeus)</div>
 </a>
-<a href="gallery/nature/Painted Bunting_ (Passerina ciris).jpg" data-src="gallery/nature/Painted Bunting_ (Passerina ciris).jpg" data-sub-html="&lt;h4&gt;Painted Bunting  (Passerina Ciris)&lt;/h4&gt;" class="gallery-item" data-exthumbimage="gallery/nature/thumb-Painted Bunting_ (Passerina ciris).jpg" style="display: inline-block; margin: 5px; text-align: center; width: 160px;">
-<img src="gallery/nature/thumb-Painted%20Bunting_%20(Passerina%20ciris).jpg" alt="Painted Bunting  (Passerina Ciris)" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;" class="gallery-thumbnail"/>
-<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Painted Bunting  (Passerina Ciris)</div>
+<a href="gallery/nature/Painted Bunting_ (Passerina ciris).jpg" class="thumb-container">
+<img src="gallery/nature/thumb-Painted%20Bunting_%20(Passerina%20ciris).jpg" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;"/>
+<div class="magnifier-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
+<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Painted Bunting<br style='margin: 0; line-height: 1;'>(Passerina ciris)</div>
 </a>
-<a href="gallery/nature/Pied-billed grebe_ (Podilymbus podiceps).png" data-src="gallery/nature/Pied-billed grebe_ (Podilymbus podiceps).png" data-sub-html="&lt;h4&gt;Pied Billed Grebe  (Podilymbus Podiceps)&lt;/h4&gt;" class="gallery-item" data-exthumbimage="gallery/nature/thumb-Pied-billed grebe_ (Podilymbus podiceps).png" style="display: inline-block; margin: 5px; text-align: center; width: 160px;">
-<img src="gallery/nature/thumb-Pied-billed%20grebe_%20(Podilymbus%20podiceps).png" alt="Pied Billed Grebe  (Podilymbus Podiceps)" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;" class="gallery-thumbnail"/>
-<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Pied Billed Grebe  (Podilymbus Podiceps)</div>
+<a href="gallery/nature/Pied-billed grebe_ (Podilymbus podiceps).png" class="thumb-container">
+<img src="gallery/nature/thumb-Pied-billed%20grebe_%20(Podilymbus%20podiceps).png" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;"/>
+<div class="magnifier-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
+<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Pied-billed grebe<br style='margin: 0; line-height: 1;'>(Podilymbus podiceps)</div>
 </a>
-<a href="gallery/nature/Prairie Warbler_ (Setophaga discolor).png" data-src="gallery/nature/Prairie Warbler_ (Setophaga discolor).png" data-sub-html="&lt;h4&gt;Prairie Warbler  (Setophaga Discolor)&lt;/h4&gt;" class="gallery-item" data-exthumbimage="gallery/nature/thumb-Prairie Warbler_ (Setophaga discolor).png" style="display: inline-block; margin: 5px; text-align: center; width: 160px;">
-<img src="gallery/nature/thumb-Prairie%20Warbler_%20(Setophaga%20discolor).png" alt="Prairie Warbler  (Setophaga Discolor)" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;" class="gallery-thumbnail"/>
-<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Prairie Warbler  (Setophaga Discolor)</div>
+<a href="gallery/nature/Prairie Warbler_ (Setophaga discolor).png" class="thumb-container">
+<img src="gallery/nature/thumb-Prairie%20Warbler_%20(Setophaga%20discolor).png" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;"/>
+<div class="magnifier-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
+<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Prairie Warbler<br style='margin: 0; line-height: 1;'>(Setophaga discolor)</div>
 </a>
-<a href="gallery/nature/Quiriquiri_American Kestrel_ (Falco sparverius).png" data-src="gallery/nature/Quiriquiri_American Kestrel_ (Falco sparverius).png" data-sub-html="&lt;h4&gt;Quiriquiri American Kestrel  (Falco Sparverius)&lt;/h4&gt;" class="gallery-item" data-exthumbimage="gallery/nature/thumb-Quiriquiri_American Kestrel_ (Falco sparverius).png" style="display: inline-block; margin: 5px; text-align: center; width: 160px;">
-<img src="gallery/nature/thumb-Quiriquiri_American%20Kestrel_%20(Falco%20sparverius).png" alt="Quiriquiri American Kestrel  (Falco Sparverius)" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;" class="gallery-thumbnail"/>
-<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Quiriquiri American Kestrel  (Falco Sparverius)</div>
+<a href="gallery/nature/Quiriquiri_American Kestrel_ (Falco sparverius).png" class="thumb-container">
+<img src="gallery/nature/thumb-Quiriquiri_American%20Kestrel_%20(Falco%20sparverius).png" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;"/>
+<div class="magnifier-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
+<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Quiriquiri<br style='margin: 0; line-height: 1;'>American Kestrel<br style='margin: 0; line-height: 1;'>(Falco sparverius)</div>
 </a>
-<a href="gallery/nature/Sagui de tufos pretos_Black-tufted marmoset_ (Callithrix penicillata).png" data-src="gallery/nature/Sagui de tufos pretos_Black-tufted marmoset_ (Callithrix penicillata).png" data-sub-html="&lt;h4&gt;Sagui De Tufos Pretos Black Tufted Marmoset  (Callithrix Penicillata)&lt;/h4&gt;" class="gallery-item" data-exthumbimage="gallery/nature/thumb-Sagui de tufos pretos_Black-tufted marmoset_ (Callithrix penicillata).png" style="display: inline-block; margin: 5px; text-align: center; width: 160px;">
-<img src="gallery/nature/thumb-Sagui%20de%20tufos%20pretos_Black-tufted%20marmoset_%20(Callithrix%20penicillata).png" alt="Sagui De Tufos Pretos Black Tufted Marmoset  (Callithrix Penicillata)" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;" class="gallery-thumbnail"/>
-<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Sagui De Tufos Pretos Black Tufted Marmoset  (Callithrix Penicillata)</div>
+<a href="gallery/nature/Sagui de tufos pretos_Black-tufted marmoset_ (Callithrix penicillata).png" class="thumb-container">
+<img src="gallery/nature/thumb-Sagui%20de%20tufos%20pretos_Black-tufted%20marmoset_%20(Callithrix%20penicillata).png" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;"/>
+<div class="magnifier-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
+<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Sagui de tufos pretos<br style='margin: 0; line-height: 1;'>Black-tufted marmoset<br style='margin: 0; line-height: 1;'>(Callithrix penicillata)</div>
 </a>
-<a href="gallery/nature/Saíra-sete-cores_Green-headed Tanager_ (Tangara seledon).JPG" data-src="gallery/nature/Saíra-sete-cores_Green-headed Tanager_ (Tangara seledon).JPG" data-sub-html="&lt;h4&gt;Saíra Sete Cores Green Headed Tanager  (Tangara Seledon)&lt;/h4&gt;" class="gallery-item" data-exthumbimage="gallery/nature/thumb-Saíra-sete-cores_Green-headed Tanager_ (Tangara seledon).JPG" style="display: inline-block; margin: 5px; text-align: center; width: 160px;">
-<img src="gallery/nature/thumb-Sa%C3%ADra-sete-cores_Green-headed%20Tanager_%20(Tangara%20seledon).JPG" alt="Saíra Sete Cores Green Headed Tanager  (Tangara Seledon)" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;" class="gallery-thumbnail"/>
-<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Saíra Sete Cores Green Headed Tanager  (Tangara Seledon)</div>
+<a href="gallery/nature/Saíra-sete-cores_Green-headed Tanager_ (Tangara seledon).JPG" class="thumb-container">
+<img src="gallery/nature/thumb-Sa%C3%ADra-sete-cores_Green-headed%20Tanager_%20(Tangara%20seledon).JPG" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;"/>
+<div class="magnifier-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
+<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Saíra-sete-cores<br style='margin: 0; line-height: 1;'>Green-headed Tanager<br style='margin: 0; line-height: 1;'>(Tangara seledon)</div>
 </a>
-<a href="gallery/nature/Sanhaço-de-fogo_Hepatic Tanager_ (Piranga flava).png" data-src="gallery/nature/Sanhaço-de-fogo_Hepatic Tanager_ (Piranga flava).png" data-sub-html="&lt;h4&gt;Sanhaço De Fogo Hepatic Tanager  (Piranga Flava)&lt;/h4&gt;" class="gallery-item" data-exthumbimage="gallery/nature/thumb-Sanhaço-de-fogo_Hepatic Tanager_ (Piranga flava).png" style="display: inline-block; margin: 5px; text-align: center; width: 160px;">
-<img src="gallery/nature/thumb-Sanha%C3%A7o-de-fogo_Hepatic%20Tanager_%20(Piranga%20flava).png" alt="Sanhaço De Fogo Hepatic Tanager  (Piranga Flava)" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;" class="gallery-thumbnail"/>
-<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Sanhaço De Fogo Hepatic Tanager  (Piranga Flava)</div>
+<a href="gallery/nature/Sanhaço-de-fogo_Hepatic Tanager_ (Piranga flava).png" class="thumb-container">
+<img src="gallery/nature/thumb-Sanha%C3%A7o-de-fogo_Hepatic%20Tanager_%20(Piranga%20flava).png" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;"/>
+<div class="magnifier-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
+<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Sanhaço-de-fogo<br style='margin: 0; line-height: 1;'>Hepatic Tanager<br style='margin: 0; line-height: 1;'>(Piranga flava)</div>
 </a>
-<a href="gallery/nature/Tucanuçu_Toco Toucan_ (Ramphastos toco).JPG" data-src="gallery/nature/Tucanuçu_Toco Toucan_ (Ramphastos toco).JPG" data-sub-html="&lt;h4&gt;Tucanuçu Toco Toucan  (Ramphastos Toco)&lt;/h4&gt;" class="gallery-item" data-exthumbimage="gallery/nature/thumb-Tucanuçu_Toco Toucan_ (Ramphastos toco).JPG" style="display: inline-block; margin: 5px; text-align: center; width: 160px;">
-<img src="gallery/nature/thumb-Tucanu%C3%A7u_Toco%20Toucan_%20(Ramphastos%20toco).JPG" alt="Tucanuçu Toco Toucan  (Ramphastos Toco)" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;" class="gallery-thumbnail"/>
-<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Tucanuçu Toco Toucan  (Ramphastos Toco)</div>
+<a href="gallery/nature/Tucanuçu_Toco Toucan_ (Ramphastos toco).JPG" class="thumb-container">
+<img src="gallery/nature/thumb-Tucanu%C3%A7u_Toco%20Toucan_%20(Ramphastos%20toco).JPG" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;"/>
+<div class="magnifier-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
+<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Tucanuçu<br style='margin: 0; line-height: 1;'>Toco Toucan<br style='margin: 0; line-height: 1;'>(Ramphastos toco)</div>
 </a>
-<a href="gallery/nature/Urubu-rei_King Vulture_ (Sarcoramphus papa).png" data-src="gallery/nature/Urubu-rei_King Vulture_ (Sarcoramphus papa).png" data-sub-html="&lt;h4&gt;Urubu Rei King Vulture  (Sarcoramphus Papa)&lt;/h4&gt;" class="gallery-item" data-exthumbimage="gallery/nature/thumb-Urubu-rei_King Vulture_ (Sarcoramphus papa).png" style="display: inline-block; margin: 5px; text-align: center; width: 160px;">
-<img src="gallery/nature/thumb-Urubu-rei_King%20Vulture_%20(Sarcoramphus%20papa).png" alt="Urubu Rei King Vulture  (Sarcoramphus Papa)" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;" class="gallery-thumbnail"/>
-<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Urubu Rei King Vulture  (Sarcoramphus Papa)</div>
+<a href="gallery/nature/Urubu-rei_King Vulture_ (Sarcoramphus papa).png" class="thumb-container">
+<img src="gallery/nature/thumb-Urubu-rei_King%20Vulture_%20(Sarcoramphus%20papa).png" style="width: 150px; height: auto; border: 2px solid #ddd; border-radius: 5px;"/>
+<div class="magnifier-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
+<div style="margin-top: 5px; font-size: 12px; max-width: 150px; line-height: 1.1; text-align: center;">Urubu-rei<br style='margin: 0; line-height: 1;'>King Vulture<br style='margin: 0; line-height: 1;'>(Sarcoramphus papa)</div>
 </a>
 </div>
 </div>
 <script type="text/javascript">
-    // Initialize lightGallery with zoom options
-    lightGallery(document.getElementById('lightgallery'), {
-        zoom: true,
-        scale: 1.2,
-        actualSize: false,
-        download: false,
-        addClass: 'lg-custom-zoom'
-    });
-    
-    // Add magnifier icons to all gallery items after page loads
-    document.addEventListener('DOMContentLoaded', function() {
-        const galleryItems = document.querySelectorAll('#lightgallery a');
-        
-        galleryItems.forEach(function(item) {
-            // Convert simple <a> with <img> to container with icon
-            const imgElement = item.querySelector('img');
-            const imgContainer = document.createElement('div');
-            imgContainer.className = 'img-container';
-            
-            // Create magnifier icon
-            const magnifier = document.createElement('div');
-            magnifier.className = 'magnifier-icon';
-            magnifier.innerHTML = '<i class="fas fa-search-plus"></i>';
-            
-            // Create a clone of the image to place in our container
-            const imgClone = imgElement.cloneNode(true);
-            
-            // Structure: <div class="img-container"><img /><div class="magnifier-icon">...</div></div>
-            imgContainer.appendChild(imgClone);
-            imgContainer.appendChild(magnifier);
-            
-            // Replace the original image with our container
-            imgElement.parentNode.insertBefore(imgContainer, imgElement);
-            imgElement.remove();
-            
-            // Add click event to the magnifier icon
-            magnifier.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                
-                // Get the image index for lightGallery
-                const index = Array.from(galleryItems).indexOf(item);
-                
-                // Open lightGallery at this index
-                window.lgData[document.getElementById('lightgallery').getAttribute('lg-uid')].goToSlide(index);
-                
-                // Trigger zoom after a short delay to ensure slide is loaded
-                setTimeout(function() {
-                    // Get the current slide's zoom toggle button and click it
-                    const zoomToggle = document.querySelector('.lg-zoom-in');
-                    if (zoomToggle) {
-                        zoomToggle.click();
-                    }
-                }, 300);
-            });
-        });
-    });
+    lightGallery(document.getElementById('lightgallery'));
 </script>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
