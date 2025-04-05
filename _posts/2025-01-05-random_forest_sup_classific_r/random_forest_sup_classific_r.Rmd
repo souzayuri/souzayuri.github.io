@@ -269,30 +269,35 @@ This is a straightforward process that primarily involves utilizing the Red, Nea
 
 Check out below a table summarizing the similarity and differences among these indexes.
 
-| Feature        | **NDVI** (Normalized Difference Vegetation Index) | **EVI** (Enhanced Vegetation Index) | **SAVI** (Soil Adjusted Vegetation Index) |
-|----------------|----------------------------------------------------|--------------------------------------|---------------------------------------------|
-| **Formula**     | (NIR - Red) / (NIR + Red)                          | 2.5 × (NIR - Red) / (NIR + C1 × Red - 7.5 × Blue + 1) | ((NIR - Red) / (NIR + Red + 0.5)) × (1 + 0.5) |
-| **Bands Used**  | NIR, Red                                           | NIR, Red, Blue                       | NIR, Red                                     |
-| **Purpose**     | General greenness/vegetation presence             | Improves sensitivity in high biomass areas | Adjusts for soil background noise       |
-| **Advantages**  | Simple, widely used                               | Corrects for atmospheric & canopy background effects | Better for areas with sparse vegetation or exposed soil |
-| **Limitations** | Sensitive to soil brightness and atmospheric conditions | More complex, needs Blue band      | Requires adjustment factor (L) based on soil type |
-| **Best Use Cases** | Moderate to dense vegetation                  | Dense forests, tropical areas       | Arid and semi-arid areas, sparse vegetation |
-
+| Feature           | **NDVI** (Normalized Difference Vegetation Index)       | **EVI** (Enhanced Vegetation Index)                                 | **SAVI** (Soil Adjusted Vegetation Index)                           |
+|-------------------|---------------------------------------------------------|----------------------------------------------------------------------|----------------------------------------------------------------------|
+| **Formula**        | (NIR - Red) / (NIR + Red)                                | 2.5 × (NIR - Red) / (NIR + 6 × Red - 7.5 × Blue + 1)                   | ((NIR - Red) / (NIR + Red + 0.5)) × (1 + 0.5)                            |
+| **Bands Used**     | NIR, Red                                                | NIR, Red, Blue                                                       | NIR, Red                                                             |
+| **Purpose**        | General greenness/vegetation presence                   | Improves sensitivity in high biomass areas                           | Adjusts for soil background noise                                   |
+| **Advantages**     | Simple, widely used                                     | Corrects for atmospheric & canopy background effects                 | Better for areas with sparse vegetation or exposed soil             |
+| **Limitations**    | Sensitive to soil brightness and atmospheric conditions | More complex, needs Blue band                                        | Requires adjustment factor (L) based on soil type                   |                         |
+| **Value Range**    | -1 to +1 (usually 0 to 0.8 in vegetated areas)          | -1 to +1 (typically 0 to 0.9 for vegetation)                         | -1 to +1 (usually 0 to 0.7, depending on L and vegetation density)  |
 
 
 
 ```{r creating vegetation indexes, echo = TRUE, include=TRUE}
 
-cropped_raster_bands_ndvi <- (cropped_raster_bands[[5]] - cropped_raster_bands[[3]]) / 
-  (cropped_raster_bands[[5]] + cropped_raster_bands[[3]])
+nir <- cropped_raster_bands[[5]]
+red <- cropped_raster_bands[[3]]
+blue <- cropped_raster_bands[[1]]
+
+# Check the range of your input bands
+print(paste("NIR range:", minmax(nir)))
+print(paste("Red range:", minmax(red)))
+print(paste("Blue range:", minmax(blue)))
+
+cropped_raster_bands_ndvi <- (nir - red) / (nir + red)
 cropped_raster_bands_ndvi
 
-cropped_raster_bands_evi <- 2.5 * ((cropped_raster_bands[[5]] - cropped_raster_bands[[3]]) /
-    (cropped_raster_bands[[5]] + (6 * cropped_raster_bands[[3]]) - (7.5 * cropped_raster_bands[[1]]) + 1))
+cropped_raster_bands_evi <- 2.5 * ((nir - red) / (nir + (6 * red) - (7.5 * blue) + 1))
 cropped_raster_bands_evi
 
-cropped_raster_bands_savi <- ((cropped_raster_bands[[5]] - cropped_raster_bands[[3]]) /
-    (cropped_raster_bands[[5]] + cropped_raster_bands[[3]] + 0.5)) * (1 + 0.5)
+cropped_raster_bands_savi <- ((nir - red) / (nir + red + 0.5)) * (1 + 0.5)
 cropped_raster_bands_savi
 
 # Create a red-to-green color palette
@@ -456,7 +461,6 @@ str(rf_test_data)
 
 ```
 
-
 Lets check the proportion of features selected by each set of data
 
 ```{r training features, echo = TRUE, include=TRUE}
@@ -468,12 +472,10 @@ rf_train_data_classCount
 
 ```
 
-
 ```{r training feature proportions, echo = TRUE, include=TRUE}
 (prop.table(table(rf_train_data$Class))*100)
 
 ```
-
 
 ```{r testing features, echo = TRUE, include=TRUE}
 rf_test_data_classCount <- rf_test_data |> 
@@ -517,8 +519,6 @@ rfModel
 
 ```
 
-
-
 ```{r plot model, echo = TRUE, include=TRUE}
 
 plot(rfModel)
@@ -531,15 +531,12 @@ plot(rfModel$finalModel)
 
 ```
 
-
-
 ```{r var contribution, echo = TRUE, include=TRUE}
 
 varImpPlot(rfModel$finalModel)
 
 
 ```
-
 
 ```{r predicting, echo = TRUE, include=TRUE}
 
@@ -594,8 +591,6 @@ tm_shape(image_lc_predict)+
 
 ```
 
-
-
 ```{r plotting interactively, echo = TRUE, include=TRUE}
 
 raster_lc_predict <- raster(image_lc_predict)
@@ -628,7 +623,6 @@ leaflet() |>
     options = layersControlOptions(collapsed = FALSE))
 
 ```
-
 
 ``` {r visualizing pixel frequency, echo = TRUE, include=TRUE}
 
