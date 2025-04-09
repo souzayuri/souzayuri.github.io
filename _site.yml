@@ -5,7 +5,6 @@ description: |
   Yuri S. Souza
 repository_url: https://github.com/souzayuri/souzayuri.github.io 
 base_url: https://souzayuri.github.io/
-favicon: photos/favicon.ico  
 # cookie-consent: 
 #      type: express 
 #      style: headline
@@ -16,7 +15,7 @@ google_analytics:
 
 output_dir: "docs"
 navbar:
-  logo: photos/favicon.ico  
+  logo: photos/bar.png 
   right:
     - icon: fab fa-researchgate fa-2x
       href: https://www.researchgate.net/profile/Yuri-Souza-6
