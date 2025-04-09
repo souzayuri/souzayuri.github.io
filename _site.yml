@@ -1,8 +1,11 @@
 name: "yuri_souza"
 title: "Yuri Souza, Ecologist"
-base_url: https://souzayuri.github.io/
+theme: theme.css 
+description: |
+  Yuri S. Souza
 repository_url: https://github.com/souzayuri/souzayuri.github.io 
-favicon: images/favicon.ico  
+base_url: https://souzayuri.github.io/
+favicon: photos/favicon.ico  
 # cookie-consent: 
 #      type: express 
 #      style: headline
@@ -10,13 +13,10 @@ favicon: images/favicon.ico
 google_analytics: 
   tracking-id: "G-D581M67N46"
   anonymize-ip: true
-theme: assets/theme.css 
-description: |
-  Yuri S. Souza
+
 output_dir: "docs"
 navbar:
-  logo: images/favicon.ico  
-  logo-alt: "Icon"
+  logo: photos/favicon.ico  
   right:
     - icon: fab fa-researchgate fa-2x
       href: https://www.researchgate.net/profile/Yuri-Souza-6
@@ -56,8 +56,15 @@ collections:
     share: [twitter, facebook]
 output:
   distill::distill_article:
+    df_print: paged
+    highlight: kate
+    highlight_downlit: FALSE
+    theme: style.css
+    toc: TRUE
+    toc_depth: 2
     includes:
       in_header: utterances.html
+
 twitter:
   site: "@Yuri_S_Souza"
   creator: "@Yuri_S_Souza"
@@ -66,4 +73,4 @@ rss:
 #  categories:
 #    - R
 #    - ShinyApp
-#    
+# 
