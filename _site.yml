@@ -12,7 +12,7 @@ google_analytics:
   anonymize-ip: true
 theme: assets/theme.css 
 description: |
-  Yuri Souza
+  Yuri S. Souza
 output_dir: "docs"
 navbar:
   # logo:
