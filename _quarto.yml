@@ -1,0 +1,81 @@
+project:
+  type: website
+  output-dir: docs
+  
+website:
+  title: "Yuri Souza, Ecologist"
+  site-url: https://souzayuri.github.io/
+  repo-url: https://github.com/souzayuri/souzayuri.github.io
+  description: "Yuri S. Souza"
+  favicon: images/icon.png
+  
+  google-analytics: 
+    tracking-id: "G-D581M67N46"
+    anonymize-ip: true
+  
+  navbar:
+    left:
+      - href: index.html
+        text: ""
+      - href: about.html
+        text: "About"
+      - href: blog.html
+        text: "Blog"
+      - href: publications.html
+        text: "Publications"
+      - href: gallery.html
+        text: "Gallery"
+      - href: nature_pics.html
+        text: "Nature Pics!"
+      - href: contact.html
+        text: "Contact"
+      - href: cv.html
+        text: "CV"
+    
+    right:
+      - icon: fab fa-researchgate
+        href: https://www.researchgate.net/profile/Yuri-Souza-6
+        aria-label: ResearchGate
+      - icon: fa fa-graduation-cap
+        href: https://scholar.google.com/citations?user=s1YL0toAAAAJ
+        aria-label: Google Scholar
+      - icon: fa-github
+        href: https://github.com/souzayuri
+        aria-label: GitHub
+      - icon: fa fa-twitter
+        href: https://twitter.com/Yuri_S_Souza
+        aria-label: Twitter
+      - icon: fa-envelope
+        href: "mailto:desouza.s.yuri@gmail.com"
+        aria-label: Email
+
+  twitter-card:
+    creator: "@Yuri_S_Souza"
+    site: "@Yuri_S_Souza"
+  
+  page-footer:
+    center: 
+      - text: "© 2023 Yuri S. Souza. CC BY license."
+
+format:
+  html:
+    theme: assets/theme.css
+    css: styles.css
+    toc: true
+
+metadata-files:
+  - _metadata.yml
+
+# Uncomment if you want to enable comments functionality
+# comments:
+#   utterances:
+#     repo: souzayuri/souzayuri.github.io
+#     theme: github-light
+
+# For blog posts configuration
+blog:
+  # Optional blog settings
+  post-feed:
+    categories: [R, ShinyApp]
+  sharing: [twitter, facebook]
+  creative-commons: CC BY

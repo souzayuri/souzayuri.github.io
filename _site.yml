@@ -1,8 +1,8 @@
 name: "yuri_souza"
 title: "Yuri Souza, Ecologist"
-#favicon: icons/favicon.ico
 base_url: https://souzayuri.github.io/
 repository_url: https://github.com/souzayuri/souzayuri.github.io 
+favicon: images/favicon.ico  
 # cookie-consent: 
 #      type: express 
 #      style: headline
@@ -15,8 +15,8 @@ description: |
   Yuri S. Souza
 output_dir: "docs"
 navbar:
-  # logo:
-  #    image: icons/android-chrome.png
+  logo: images/favicon.ico  
+  logo-alt: "Icon"
   right:
     - icon: fab fa-researchgate fa-2x
       href: https://www.researchgate.net/profile/Yuri-Souza-6
@@ -29,7 +29,7 @@ navbar:
 #    - icon: fa fa-brands fa-instagram fa-2x
 #      href: https://www.instagram.com/ssouzayuri/
     - icon: fa-duotone fa-envelope fa-2x
-      href: "mailto:yuri.souza@miami.edu"
+      href: "mailto:desouza.s.yuri@gmail.com"
   left:
     - text: ""
       href: index.html
@@ -54,12 +54,10 @@ collections:
     creative_commons: CC BY
 #    disqus: yuri_souza
     share: [twitter, facebook]
-    
 output:
   distill::distill_article:
     includes:
       in_header: utterances.html
-                 
 twitter:
   site: "@Yuri_S_Souza"
   creator: "@Yuri_S_Souza"
