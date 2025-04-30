@@ -8,7 +8,7 @@ categories:
   - R
 author:
   - name: Yuri Souza
-date: 2025-03-21
+date: 2025-04-29
 preview: RF_example.png
 output:
   distill::distill_article:
@@ -47,6 +47,39 @@ For the record, this tutorial is a compilation of what is available in following
 - [Urban Spatial](https://urbanspatial.github.io/classifying_satellite_imagery_in_R/)
 
 
+## **About Random Forest**
+
+
+**Random Forest** is a supervised nonlinear algorithm approach that allows for classifying a dataset into categories or classes using classification or regression techniques. It is a technique based on the approach of **Decision Trees**, with a difference in that Random Forest uses a collection of Decision Trees instead of a single one, therefore providing more flexibility, accuracy, and ease of access in the output. Decision trees have a limitation because they lack accuracy and show low accuracy during the testing phase due to the process called *over-fitting* (that here can be understood as a model that matches the training set so closely that it fails to make correct predictions on new data). Random Forest, on the other hand, forests help to reduce tree correlation by injecting more randomness into the tree-growing process. It searches for the best feature from a random subset of features, providing more randomness to the model and resulting in a better and accurate model. Being able to randomize the data and come up with random samples is important in building a model because it creates variation, minimizes bias, creates equivalent treatment groups, and, therefore, increases the model’s potential for generalizations.
+
+Random Forest and Decision Trees both have a tree-like structure made up of nodes and branches. At each node, the data gets split based on one of the input features, creating two or more branches. This splitting continues at the next nodes, leading to even more branches that help break down the original data into smaller parts. The process goes on until you reach a point where most of the data in a node belongs to the same class, making further splits unnecessary.
+The very first split happens at the root node, while the final nodes, called leaves, are linked to specific class labels. The routes you take from the root to each leaf outline the rules for classifying the data. [Check this out for a deep explanation](https://medium.com/data-science/from-a-single-decision-tree-to-a-random-forest-b9523be65147).
+
+![Decision Tree vs Random Forest](decision_tree_vs_random_forest.png) [Source](https://medium.com/data-science/from-a-single-decision-tree-to-a-random-forest-b9523be65147)
+
+Random Forest uses the **bagging** method in decision trees and, as a result, increases the accuracy of the learning model. Bagging trees introduces a random component into the tree-building process by building many trees on bootstrapped copies of the training data. Bagging then aggregates the predictions across all the trees; this aggregation reduces the variance of the overall procedure and results in improved predictive performance. 
+
+Simply put, bagging (short for bootstrap aggregating) is directly derived from **bootstrapping**. It uses the concept of bootstrapping—sampling with replacement—to generate multiple datasets from the original training set. Bagging extends bootstrapping by applying it in the context of model training and prediction aggregation, turning a statistical resampling method into a powerful ensemble learning technique. Bootstrapping and bagging share a common foundation in that both involve sampling with replacement from the original training data to create new datasets. 
+
+![Decision Tree vs Random Forest](bootstrap.png) [Source](https://bradleyboehmke.github.io/HOML/)
+
+**Bootstrapping** is primarily a resampling technique used to estimate variability or confidence in statistical measures by generating multiple bootstrap samples. **Bagging** builds on this concept by using each of these bootstrap samples to train separate models, often referred to as base learners. While bootstrapping focuses solely on data generation, bagging takes it further by combining the predictions from these multiple models to form a more stable and accurate overall prediction. The main goal of bagging is to reduce variance and minimize overfitting in regression and classification tasks, making it a key ensemble method in machine learning, whereas bootstrapping itself is not directly concerned with model performance.
+
+![Decision Tree vs Random Forest](bagging.png) [Source](https://aiml.com/what-is-bagging/)
+
+**For more information**:
+
+- [Random Forest Approach for Classification in R Programming](https://www.geeksforgeeks.org/random-forest-approach-for-classification-in-r-programming/)
+
+- [Hands-On Machine Learning with R](https://bradleyboehmke.github.io/HOML/) 
+
+- [From a Single Decision Tree to a Random Forest](https://medium.com/data-science/from-a-single-decision-tree-to-a-random-forest-b9523be65147) 
+
+- [The Three Bs: Bootstrapping, Bagging, & Boosting!](https://medium.com/@curryrowan/the-three-bs-bootstrapping-bagging-boosting-43df4b372a6a)
+
+- [What is Bagging? How do you perform bagging and what are its advantages?](https://aiml.com/what-is-bagging/)
+
+
 ## **That said, lets get started!!!**
 
 In a few words, my goal here is to use a drone optical imagery I took during my fieldwork in Brazil and make a **model able to identify what is Bare Soil, Grass, and Trees** on it. This image was taken in *Chapada Dos Veadeiros National Park*, Brazil.
@@ -65,6 +98,12 @@ I broke down the workflow of this tutorial into six main steps, along with some 
 
 ## [3. Training the Model](#section3)
 ### [3.1.](#section3-1) Creating Vegetation Indexes
+### [3.2.](#section3-2) Renaming, Visualizing, and Checking Vegetation Index Values
+### [3.3.](#section3-3) Scaling Band Values and Remaking Vegetation Indexes
+### [3.4.](#section3-4) Renaming, Visualizing, and Checking Vegetation Index Values
+### [3.5.](#section3-5) Extracting the Pixel Values for the Training Data and Assigning Vegetation Classes
+### [3.6.](#section3-6)  Visualizing the Vegetation Classes Distribution of Training Data
+
 ## [4. Evaluating the Model](#section4)
 
 ## [5. Classifying the Image](#section5)
@@ -81,7 +120,6 @@ If you want to
 ### **Hands to Work**
 
 To get started, the very first step is to load the necessary packages (assuming you already have R installed on your machine). We'll utilize **raster** and **terra** for handling raster data, **sf** for managing spatial data like points and polygons, and **tidyverse** for data tabulation and visualization. Additionally, we'll rely on **caret** for implementing random forest methods, and use **mapview** along with **leaflet** to plot and visualize both the polygons and raster images. While these are the primary packages we'll need, I'll also incorporate some others to further explore the results of our image classification.
-
 
 ## 1. Installing and Loading the Packages{#section1}
 
@@ -106,6 +144,7 @@ if (!require("plotly")) install.packages("plotly")
 
 
 ```
+
 ## 2. Getting the Data Ready{#section2}
 
 ### **2.1 Loading the datasets**{#section2-1}
@@ -211,6 +250,7 @@ if (terra::crs(raw_raster) == terra::crs(train_features_clnd)) {
 
 
 ```
+
 ### **2.5. Renaming and Selecting the Bands**{#section2-5}
 
 So far, we have ensured the consistency of the image coordinates and defined the grid area we want to work on.
@@ -226,6 +266,7 @@ cropped_raster_bands <- cropped_raster[[1:5]]
 plot(cropped_raster_bands)
 
 ```
+
 ### **2.6. Visualizing the Raster and Polygons**{#section2-6}
 
 Now that we have the raster with five bands and the polygons ready for training the model, let's visualize our data. We'll create a natural color composition. To do this we need to inform the position of the RGB bands of the raster image (that is why naming it before hand was important) and overlay it with each class represented by the polygons. For visualization, we will use mapview() because it's interactive (just because we want some cool!!!).
@@ -260,7 +301,6 @@ One cool aspect of using optical imagery rasters with various bands is the abili
 
 Now that we have our raster image and training features prepared, let's move on to the next step: using this raster image and bands to create various vegetation indexes. They will be stacked as bands and will be used to train the model, using the mapped polygons, and to predict the vegetation classes in the later steps of the classification. This process will improve the classification of the image by pinpointing pixel combinations that are more accurately representative of the specific vegetation characteristics we aim to map.
 
-
 ### **3.1. Creating Vegetation Indexes**{#section3-1}
 
 When conducting image classification, it’s crucial to provide clear information that highlights the distinguishing features you’re mapping. In this section, we will focus on creating three widely used vegetation indexes in remote sensing: the NDVI (Normalized Difference Vegetation Index), the EVI (Enhanced Vegetation Index), and the SAVI (Soil Adjusted Vegetation Index). Each of these indexes interprets vegetation in unique ways, and we will utilize them alongside the spectral bands from the drone imagery to classify the image effectively.
@@ -277,8 +317,6 @@ Check out below a table summarizing the similarity and differences among these i
 | **Advantages**     | Simple, widely used                                     | Corrects for atmospheric & canopy background effects                 | Better for areas with sparse vegetation or exposed soil             |
 | **Limitations**    | Sensitive to soil brightness and atmospheric conditions | More complex, needs Blue band                                        | Requires adjustment factor (L) based on soil type                   |                         |
 | **Value Range**    | -1 to +1 (usually 0 to 0.8 in vegetated areas)          | -1 to +1 (typically 0 to 0.9 for vegetation)                         | -1 to +1 (usually 0 to 0.7, depending on L and vegetation density)  |
-
-
 
 ```{r creating vegetation indexes, echo = TRUE, include=TRUE}
 
@@ -313,9 +351,12 @@ par(mfrow = c(1, 1))
 
 
 ```
+
+### **3.2. Renaming, Visualizing, and Checking Vegetation Index Values**{#section3-2}
+
 Let's stack these three indexes in our raster data so we can have more information to feed the model. After stacking the rasters containing the indexes with our main raster, we will notice that the new rasters are named as NIR. That is because the first spectral band we used in the above calculations was the NIR band. To avoid confusion between the NIR spectral band and the new rasters indexes, we will name them according to which index they represent.
 
-```{r visualizing datax, echo = TRUE, include=TRUE}
+```{r stacking indexes and bands, echo = TRUE, include=TRUE}
 
 train_features_clnd_indexes <- c(cropped_raster_bands, 
                                  cropped_raster_bands_ndvi,
@@ -329,29 +370,103 @@ train_features_clnd_indexes
 
 plot(train_features_clnd_indexes)
 
+summary(train_features_clnd_indexes)
+
 ```
 
+### **3.3. Scaling Band Values and Remaking Vegetation Indexes**{#section3-3}
 
-Now we have everything to move forward to prepare the data that will be use for training and testing our RF model. 
-Lets get started by extracting the pixel values for those features we mapped. These pixel values will be used to train and test the model later.
+You probably have noticed that the index values of NDVI, EVI, and SAVI range beyond the expected range of -1 to 1. 
+That is because we need to convert our raw band values to reflectance values between 0 and 1. 
+This conversion could have been done in past steps, but I wanted to present you with this common issue.
+To convert, we will simply divide each band by 65535, the theoretical maximum value of my drone image (a 16-bit image).
+Let's convert these numbers and redo what we have done in step **3.1. Creating Vegetation Indexes**.
 
-```{r visualizing datas, echo = TRUE, include=TRUE}
+```{r scale down bands and recalculate indexes, echo = TRUE, include=TRUE}
 
-train_features_clnd_pxls <- extract(train_features_clnd_indexes, train_features_clnd)
+cropped_raster_bands_scaled = cropped_raster_bands/ 65535
+
+
+# splitting the required bands
+nir <- cropped_raster_bands_scaled[[5]]
+red <- cropped_raster_bands_scaled[[3]]
+blue <- cropped_raster_bands_scaled[[1]]
+
+# Check the range of your input bands
+print(paste("NIR range:", minmax(nir)))
+print(paste("Red range:", minmax(red)))
+print(paste("Blue range:", minmax(blue)))
+
+cropped_raster_bands_ndvi_scaled <- (nir - red) / (nir + red)
+cropped_raster_bands_ndvi_scaled
+
+cropped_raster_bands_evi_scaled <- 2.5 * ((nir - red) / (nir + (6 * red) - (7.5 * blue) + 1))
+cropped_raster_bands_evi_scaled
+
+cropped_raster_bands_savi_scaled <- ((nir - red) / (nir + red + 0.5)) * (1 + 0.5)
+cropped_raster_bands_savi_scaled
+
+# Create a red-to-green color palette
+red_to_green_palette <- colorRampPalette(c("darkred", "yellow", "darkgreen"))
+# Lets visuallize them together
+par(mfrow = c(1, 3))
+
+plot(cropped_raster_bands_ndvi_scaled, main = "NDVI", col = red_to_green_palette(100))
+plot(cropped_raster_bands_evi_scaled, main = "EVI", col = red_to_green_palette(100))
+plot(cropped_raster_bands_savi_scaled, main = "SAVI", col = red_to_green_palette(100))
+
+
+```
+
+### **3.4. Renaming, Visualizing, and Checking Vegetation Index Values**{#section3-4}
+
+If you check the new values, you will see that they range from -1 to 1, therefore properly scaled down.
+
+```{r exploring the data, echo = TRUE, include=TRUE}
+
+train_features_clnd_indexes_scaled <- c(cropped_raster_bands_scaled, 
+                                        cropped_raster_bands_ndvi_scaled,
+                                        cropped_raster_bands_evi_scaled, 
+                                        cropped_raster_bands_savi_scaled)
+train_features_clnd_indexes_scaled
+
+# renaming the bands by using their position in the list
+names(train_features_clnd_indexes_scaled) <- c(names(cropped_raster_bands_scaled),"NDVI", "EVI", "SAVI")
+train_features_clnd_indexes_scaled
+
+plot(train_features_clnd_indexes_scaled)
+
+summary(train_features_clnd_indexes_scaled)
+
+```
+
+### **3.5. Extracting the Pixel Values for the Training Data and Assigning Vegetation Classes**{#section3-5}
+
+With these images, we have everything we need to move forward, preparing the data that will be used to train and test our random forest model. 
+Let's start by extracting the pixel values for the features we mapped. We will later use these pixel values to train and test the model.
+
+```{r preparing the training data, echo = TRUE, include=TRUE}
+
+# extracting the pixel information using the mapped features/polygons
+train_features_clnd_pxls <- extract(train_features_clnd_indexes_scaled, train_features_clnd)
 head(train_features_clnd_pxls)
 
-
+# Let's use ID values to index into the Class vector. This indexing operation retrieves the class names/values that correspond to each ID value. These retrieved class names/values are then assigned to a new column called.
 train_features_clnd_pxls$Class <- train_features_clnd$Class[train_features_clnd_pxls$ID]
 head(train_features_clnd_pxls)
 
+# now that we have the class names we don't need the ID index position
 train_features_clnd_pxls$ID <- NULL
 
 summary(train_features_clnd_pxls)
 
 ```
-Now that we have given those polygons delimitation pixel information, lets take a look at some of these pixels distribution
 
-```{r visualizing indexes histogram, echo = TRUE, include=TRUE}
+### **3.6. Visualizing the Vegetation Classes Distribution of Training Data**{#section3-6}
+
+Now that we have assigned each band and vegetation indexes to the training polygons, let's take a look at the distribution of each vegetation class using a histogram of frequency.
+
+```{r visualizing the vegetation classes of training data, echo = TRUE, include=TRUE}
 val_grass <- subset(train_features_clnd_pxls, Class == "grass")
 head(val_grass)
 val_trees <- subset(train_features_clnd_pxls, Class == "trees")
@@ -368,8 +483,6 @@ hist(val_bare_soil$NDVI, main = "bare_soil", xlab = "NDVI", xlim = c(0, 1), col 
 
 
 ```{r visualizing indexes effects, echo = TRUE, include=TRUE}
-par(mfrow = c(1, 1))
-
 # Scatterplot and trend lines of NIR and SAVI bands 
 plot(NDVI ~ EVI, data = val_grass, pch = ".", col = "#e5ca81", xlab = "SAVI", ylab = "NDVI")
 points(NDVI ~ EVI, data = val_trees, pch = ".", col = "#81a581")
@@ -416,7 +529,7 @@ ggplot(train_features_clnd_pxls_indexes,
                dplyr::group_by(Class, indexes) |> 
                dplyr::summarise(mean = mean(values), .groups = "drop") |> 
                dplyr::ungroup(),
-             aes(xintercept = mean, color = indexes), linetype = "dashed", size = 0.8) +
+             aes(xintercept = mean, color = indexes), linetype = "dashed", linewidth = 0.8) +
   scale_fill_manual(values = c("#e5ca81", "#7b6f89", "#81a581"), labels = c("EVI", "NDVI", "SAVI")) +
   scale_color_manual(values = c("#e5ca81", "#7b6f89", "#81a581"), labels = c("EVI", "NDVI", "SAVI")) +
   theme_bw() + labs(x = "", y = "Frequency") +
