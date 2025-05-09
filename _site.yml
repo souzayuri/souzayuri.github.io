@@ -15,7 +15,7 @@ google_analytics:
 
 output_dir: "docs"
 navbar:
-  logo: photos/bar.png 
+  logo: photos/hist.png 
   right:
     - icon: fab fa-researchgate fa-2x
       href: https://www.researchgate.net/profile/Yuri-Souza-6
