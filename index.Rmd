@@ -1,5 +1,5 @@
 ---
-title: "Yuri S. Souza"
+title: "Yuri Souza"
 image: "data/images/YuriSSouza.jpg"
 #css: [bg_image.css]
 #links:
